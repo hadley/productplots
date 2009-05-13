@@ -11,7 +11,7 @@ mosaic <- function(direction = "h") {
   function(n) rep(splits, length = n)
 }
 
-stackedbar <- function(direction = "h") {
+stacked <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
     splits <- c("hbar", "vspline")
@@ -21,7 +21,7 @@ stackedbar <- function(direction = "h") {
 
   function(n) c(splits[1], rep(splits[2], length = n - 1))
 }
-nestedbar <- function(direction = "h") {
+nested <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
     splits <- c("hbar")
