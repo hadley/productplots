@@ -2,7 +2,7 @@
 # draw(fluct(test))
 fluct <- function(data, offset = 0.05, max = NULL) {
   if (is.null(max)) max <- 1
-  sizes <- sqrt(data / max / sum(data)) * (1 - offset)
+  sizes <- sqrt(data / max) * (1 - offset)
   
   xmin <- (col(data) - 1) / ncol(data)
   ymin <- (row(data) - 1) / nrow(data)
