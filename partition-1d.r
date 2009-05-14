@@ -5,7 +5,7 @@ rotate <- function(data) {
   ))
 }
 
-hspline <- function(data, offset = 0.01) {
+hspline <- function(data, offset = 0.01, max = NULL) {
   n <- length(data)
   # n + 1 offsets
   offsets <- c(0, rep(1, n - 1), 0) * offset
@@ -21,18 +21,20 @@ hspline <- function(data, offset = 0.01) {
     ymax = 1
   )
 }
-vspline <- function(data, offset = 0.01) {
-  rotate(hspline(data, offset))
+vspline <- function(data, offset = 0.01, max = NULL) {
+  rotate(hspline(data, offset, max = max))
 }
 
-hbar <- function(data, offset = 0.02) {
+hbar <- function(data, offset = 0.02, max = NULL) {
+  if (is.null(max)) max <- 1
+  
   n <- length(data)
   # n + 1 offsets
   offsets <- c(0, rep(1, n - 1), 0) * offset
   
   width <- (1 - sum(offsets)) / n
   # Heights must sum to 1
-  heights <- data / sum(data)
+  heights <- data  / max / sum(data)
   
   widths <- as.vector(t(cbind(width, offsets[-1])))
   pos <- c(offsets[1], cumsum(widths)) / sum(widths)
@@ -43,8 +45,8 @@ hbar <- function(data, offset = 0.02) {
     ymax = heights
   )
 }
-vbar <- function(data, offset = 0.02) {
-  rotate(hbar(data, offset))
+vbar <- function(data, offset = 0.02, max = NULL) {
+  rotate(hbar(data, offset, max = max))
 }
 
 # squarified: 
