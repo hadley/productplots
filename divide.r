@@ -23,21 +23,32 @@ margin <- function(table, marginals = c(), conditionals = c()) {
 
 
 divide <- function(data, bounds = bound(), divider = hbar, level = 1, cascade = 0, max = NULL) {
-  if (ncol(data) == 2) {
-    partition <- divider[[1]](data$.wt, max = max)
+  d <- part_d(divider[[1]])
+  if (ncol(data) == d + 1) {
+    # End case of recursion
+    
+    if (d > 1) {
+      margins <- paste(names(data)[-ncol(data)], collapse = " ~ ")
+      wt <- as.matrix(cast(data, margins, value = ".wt"))      
+    } else {
+      wt <- data$.wt
+    }
+    
+    if (is.null(max)) max <- max(wt)
+    partition <- divider[[1]](wt, max = max)
     cbind(data, squeeze(partition, bounds), level = level)
   } else {
-    parent <- divide(margin(data, 1), bounds, divider, level, max = max)
+    parent <- divide(margin(data, seq_len(d)), bounds, divider, level, max = max)
     parentc <- transform(parent, 
       xmin = xmin + cascade, ymin = ymin + cascade, 
       xmax = xmax + cascade, ymax = ymax + cascade)
     
-    max_wt <- max(margin(data, 2, 1)$.wt)
+    max_wt <- max(margin(data, d + 1, seq_len(d))$.wt)
     
-    pieces <- as.list(dlply(data, 1))
+    pieces <- as.list(dlply(data, seq_len(d)))
     children <- ldply(seq_along(pieces), function(i) {
       piece <- pieces[[i]]
-      partition <- divide(piece[, -1], parentc[i, ], divider[-1], 
+      partition <- divide(piece[, -seq_len(d)], parentc[i, ], divider[-1], 
         level = level + 1, cascade = cascade, max = max_wt)
       cbind(piece[rep(1, nrow(partition)), 1, drop = FALSE], partition)
     })
