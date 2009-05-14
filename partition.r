@@ -1,7 +1,3 @@
-library(ggplot2)
-source("partition-1d.r")
-source("partition-2d.r")
-
 partd <- function(x) nulldefault(attr(x, "d"), 1)
 
 add_area <- function(df) {

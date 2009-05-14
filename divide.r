@@ -1,6 +1,3 @@
-source("templates.r")
-source("partition.r")
-
 margin <- function(table, marginals = c(), conditionals = c()) {
   if (is.numeric(marginals))    marginals    <- names(table)[marginals]
   if (is.numeric(conditionals)) conditionals <- names(table)[conditionals]
@@ -23,7 +20,7 @@ margin <- function(table, marginals = c(), conditionals = c()) {
 
 
 divide <- function(data, bounds = bound(), divider = hbar, level = 1, cascade = 0, max = NULL) {
-  d <- part_d(divider[[1]])
+  d <- partd(divider[[1]])
   if (ncol(data) == d + 1) {
     # End case of recursion
     
