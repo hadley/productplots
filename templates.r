@@ -41,3 +41,13 @@ ddecker <- function(direction = "h") {
 
   function(n) c(rep(splits[1], length = n - 1), splits[2])
 }
+
+flucts <- function(direction = "h") {
+  direction <- match.arg(direction, .directions)
+  if (direction == "horizontal") {
+    splits <- c("hspline", "vspline")
+  } else {
+    splits <- c("vspline", "hspline")
+  }
+  function(n) c(rep(splits, length = n - 2), "fluct")
+}
