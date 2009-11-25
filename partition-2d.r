@@ -8,12 +8,12 @@ fluct <- function(data, offset = 0.05, max = NULL) {
   ymin <- (row(data) - 1) / nrow(data)
   xmax <- xmin + sizes / ncol(data)
   ymax <- ymin + sizes / nrow(data)
-  
+
   data.frame(
-    xmin = as.vector(t(xmin)),
-    ymin = as.vector(t(ymin)),
-    xmax = as.vector(t(xmax)),
-    ymax = as.vector(t(ymax))
+    xmin = as.vector(xmin),
+    ymin = as.vector(ymin),
+    xmax = as.vector(xmax),
+    ymax = as.vector(ymax)
   )
 }
 attr(fluct, "d") <- 2
