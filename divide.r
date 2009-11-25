@@ -10,16 +10,16 @@ margin <- function(table, marginals = c(), conditionals = c()) {
     table$.wt <- 1 / nrow(table)
   }
   
-  marg <- ddply(table, c(conditionals, marginals), colwise(sum, c(".wt")))
+  marg <- ddply(table, c(conditionals, marginals), colwise(sum, c(".wt")), .drop = FALSE)
   if (length(conditionals) > 0) {
-    ddply(marg, conditionals, transform, .wt = .wt / sum(.wt, na.rm = TRUE))
+    ddply(marg, conditionals, transform, .wt = .wt / sum(.wt, na.rm = TRUE), .drop = FALSE)
   } else {
     marg
   }
 }
 
 
-divide <- function(data, bounds = bound(), divider = hbar, level = 1, cascade = 0, max_wt = NULL) {
+divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, cascade = 0, max_wt = NULL) {
   d <- partd(divider[[1]])
   if (ncol(data) == d + 1) {
     # End case of recursion
