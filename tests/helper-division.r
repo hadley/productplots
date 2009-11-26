@@ -1,4 +1,3 @@
-prop <- function(x) x / sum(x)
 make_df <- function(mat) {
   rename(melt(mat), c("value" = ".wt"))
 }

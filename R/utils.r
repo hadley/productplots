@@ -1,0 +1,1 @@
+prop <- function(x) x / sum(x, na.rm = TRUE)

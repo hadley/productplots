@@ -5,17 +5,15 @@ margin <- function(table, marginals = c(), conditionals = c()) {
   marginals <- rev(marginals)
   conditionals <- rev(conditionals)
   
-  # If no weight column, give constant weight
-  if (is.null(table$.wt)) {
-    table$.wt <- 1 / nrow(table)
-  }
+  marg <- weighted.table(table[c(conditionals, marginals)], table$.wt)
   
-  marg <- ddply(table, c(conditionals, marginals), colwise(sum, c(".wt")), .drop = FALSE)
   if (length(conditionals) > 0) {
-    ddply(marg, conditionals, transform, .wt = .wt / sum(.wt, na.rm = TRUE), .drop = FALSE)
+    marg$.wt <- ave(marg$.wt, ninteraction(marg[conditionals]), FUN = prop)
+    marg
   } else {
     marg
   }
 }
 
 as.quoted.name <- function(x) structure(list(x), class = "quoted")
+
