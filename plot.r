@@ -13,3 +13,17 @@ prodplot <- function(data, vars, conditions = c(), divider = mosaic(), cascade =
   res <- prodcalc(data, vars, conditions, divider, cascade, scale_max)
   draw(res, ...)
 }
+
+draw <- function(df, alpha = 1) {
+  ggplot(df, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, order = level)) + 
+    geom_rect(colour = "black", alpha = alpha) +
+    xlab(NULL) + ylab(NULL)
+}
+
+colour_weight <- list(
+  aes(fill = .wt), 
+  scale_fill_gradient("Weight", low = "grey80", high = "black"))
+
+colour_level <- list(
+  aes(fill = factor(level)),
+  scale_fill_brewer("Level", pal = "Blues"))

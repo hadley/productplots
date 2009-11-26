@@ -4,14 +4,6 @@ add_area <- function(df) {
   transform(df, area = (xmax - xmin) * (ymax - ymin))
 }
 
-draw <- function(df, alpha = 1) {
-  ggplot(df, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, order = level)) + 
-    geom_rect(colour = "black", alpha = alpha) +
-    xlab(NULL) + ylab(NULL)# + 
-    # scale_x_continuous(expand = c(0, 0.02), limits = c(0, 1)) +
-    # scale_y_continuous(expand = c(0, 0.02), limits = c(0, 1))
-}
-
 # Squeeze pieces to lie within specified bounds
 squeeze <- function(pieces, bounds = bound()) {
   scale_x <- with(bounds, function(x) x * (xmax - xmin) + xmin)
