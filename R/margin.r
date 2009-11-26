@@ -1,17 +1,9 @@
-
 margin <- function(table, marginals = c(), conditionals = c()) {
   if (is.numeric(marginals))    marginals    <- names(table)[marginals]
   if (is.numeric(conditionals)) conditionals <- names(table)[conditionals]
   
-  if (is.formula(marginals)) {
-    if (marginals[[2]][[1]] == as.name("|")) {
-      conditionals <- marginals[[2]][[3]]
-      marginals <- marginals[[2]][[2]]
-    }
-  }
-  
-  marginals <- rev(as.quoted(marginals))
-  conditionals <- as.quoted(conditionals)
+  marginals <- rev(marginals)
+  conditionals <- rev(conditionals)
   
   # If no weight column, give constant weight
   if (is.null(table$.wt)) {
