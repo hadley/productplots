@@ -16,7 +16,7 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
   
   # browser()
   if (is.null(max_wt)) {
-    max_wt <- max(margin(data, d + 1, seq_len(d))$.wt)
+    max_wt <- max(margin(data, d + 1, seq_len(d))$.wt, na.rm = TRUE)
   }
   
   pieces <- as.list(dlply(data, seq_len(d)))
@@ -33,9 +33,8 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
 
 #' @params data data frame giving partitioning variables and weights.  Final
 #'   column should be called .wt and contain weights
-divide_once <- function(data, bounds, divider, level = 1, max_wt) {
+divide_once <- function(data, bounds, divider, level = 1, max_wt = NULL) {
   d <- partd(divider)
-  
   # Convert into vector/matrix/array for input to divider function
   if (d > 1) {
     wt <- tapply(data$.wt, data[-ncol(data)], identity)
