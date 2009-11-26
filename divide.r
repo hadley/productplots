@@ -1,23 +1,3 @@
-margin <- function(table, marginals = c(), conditionals = c()) {
-  if (is.numeric(marginals))    marginals    <- names(table)[marginals]
-  if (is.numeric(conditionals)) conditionals <- names(table)[conditionals]
-  
-  marginals <- as.quoted(marginals)
-  conditionals <- as.quoted(conditionals)
-  
-  # If no weight column, give constant weight
-  if (is.null(table$.wt)) {
-    table$.wt <- 1 / nrow(table)
-  }
-  
-  marg <- ddply(table, c(conditionals, marginals), colwise(sum, c(".wt")), .drop = FALSE)
-  if (length(conditionals) > 0) {
-    ddply(marg, conditionals, transform, .wt = .wt / sum(.wt, na.rm = TRUE), .drop = FALSE)
-  } else {
-    marg
-  }
-}
-
 divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, cascade = 0, max_wt = NULL) {
   d <- partd(divider[[1]])
   if (ncol(data) == d + 1) {
