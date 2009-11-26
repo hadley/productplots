@@ -4,10 +4,7 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
     return(divide_once(data, bounds, divider[[1]], level, max_wt))    
   }
   
-  # In divide we work with the opposite order of variables to margin - 
-  # so we flip and then flip back
-  parent_data <- margin(data, rev(seq_len(d)))
-  parent_data <- parent_data[, c(rev(seq_len(d)), d + 1)]
+  parent_data <- margin(data, seq_len(d))
 
   parent <- divide_once(parent_data, bounds, divider[[1]], level, max_wt)
   parentc <- transform(parent, 
