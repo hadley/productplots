@@ -7,7 +7,7 @@ prodcalc <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
   
   max_wt <- if (scale_max) NULL else 1
 
-  divide(wt, divider = divider, cascade = cascade, max_wt = max_wt)
+  divide(wt, divider = rev(divider), cascade = cascade, max_wt = max_wt)
 }
 
 prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, ...) {
