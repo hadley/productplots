@@ -1,0 +1,5 @@
+Need to be able to specify offset somehow.
+
+  * zero offset for continuous data
+  * zero offset for polar coordinates
+  * smaller offset as dimensions increase
