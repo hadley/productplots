@@ -4,7 +4,7 @@ Title:
 Version: 0.1
 Author: Hadley Wickham <h.wickham@gmail.com>
 Maintainer: Hadley Wickham <h.wickham@gmail.com>
-Depends: ggplot2, reshape, plyr
+Depends: ggplot2, plyr
 License: GPL-2
 LazyData: true
 Description: 

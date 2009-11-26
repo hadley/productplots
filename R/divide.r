@@ -38,8 +38,7 @@ divide_once <- function(data, bounds, divider, level = 1, max_wt) {
   
   # Convert into vector/matrix/array for input to divider function
   if (d > 1) {
-    margins <- paste(names(data)[-ncol(data)], collapse = " ~ ")
-    wt <- as.matrix(cast(data, margins, value = ".wt"))
+    wt <- tapply(data$.wt, data[-ncol(data)], identity)
   } else {
     wt <- data$.wt
   }
