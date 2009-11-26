@@ -24,7 +24,7 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
     piece <- pieces[[i]]
     partition <- divide(piece[, -seq_len(d)], parentc[i, ], divider[-1], 
       level = level + 1, cascade = cascade, max = max_wt)
-
+    
     labels <- piece[rep(1, nrow(partition)), 1:d, drop = FALSE]
     cbind(labels, partition)
   })
@@ -37,12 +37,13 @@ divide_once <- function(data, bounds, divider, level = 1, max_wt = NULL) {
   d <- partd(divider)
   # Convert into vector/matrix/array for input to divider function
   if (d > 1) {
+    data[-ncol(data)] <- lapply(data[-ncol(data)], addNA, ifany = TRUE)
     wt <- tapply(data$.wt, data[-ncol(data)], identity)
   } else {
     wt <- data$.wt
   }
   
-  if (is.null(max_wt)) max_wt <- max(wt)
+  if (is.null(max_wt)) max_wt <- max(wt, na.rm = TRUE)
   
   partition <- divider(wt, max = max_wt)
   cbind(data, squeeze(partition, bounds), level = level)
