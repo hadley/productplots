@@ -4,9 +4,9 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
     return(divide_once(data, bounds, divider[[1]], level, max_wt))    
   }
   
-  parent_data <- margin(data, seq_len(d))
-  # Reverse order of variables for 2d case.  I don't understand why this is
-  # necessary yet
+  # In divide we work with the opposite order of variables to margin - 
+  # so we flip and then flip back
+  parent_data <- margin(data, rev(seq_len(d)))
   parent_data <- parent_data[, c(rev(seq_len(d)), d + 1)]
 
   parent <- divide_once(parent_data, bounds, divider[[1]], level, max_wt)
@@ -16,7 +16,7 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
   
   # browser()
   if (is.null(max_wt)) {
-    max_wt <- max(margin(data, d + 1, seq_len(d))$.wt)    
+    max_wt <- max(margin(data, d + 1, seq_len(d))$.wt)
   }
   
   pieces <- as.list(dlply(data, seq_len(d)))
