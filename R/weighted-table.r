@@ -10,6 +10,9 @@ weighted.table <- function(vars, wt = NULL) {
   sums <- tapply(wt, rev(vars), sum)
   
   df <- as.data.frame.table(sums, responseName = ".wt")
+  # Missing values represent missing combinations in the original dataset,
+  # i.e. they have zero weight
+  df$.wt[is.na(df$.wt)] <- 0
   df[, c(rev(seq_len(ncol(df) - 1)), ncol(df)) ]
 }
 
