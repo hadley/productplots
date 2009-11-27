@@ -37,7 +37,7 @@ has_proportional_areas <- function() {
     
     expectation(
       nrow(incorrect) == 0,
-      paste(c("", capture.output(print(incorrect))), collapse = "\n")
+      paste(c("", capture.output(print(head(incorrect)))), collapse = "\n")
     )
   }
 }
