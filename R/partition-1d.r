@@ -13,7 +13,9 @@ hspline <- function(data, offset = 0.01, max = NULL) {
   data <- prop(data) * (1 - sum(offsets))
   
   widths <- as.vector(t(cbind(data, offsets[-1])))
-  pos <- c(offsets[1], cumsum(widths)) / sum(widths, na.rm = TRUE)
+  widths[is.na(widths)] <- 0
+  
+  pos <- c(offsets[1], cumsum(widths)) / sum(widths)
   data.frame(
     xmin = pos[seq(1, 2 * n - 1, by = 2)],
     xmax = pos[seq(2, 2 * n, by = 2)],

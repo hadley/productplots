@@ -58,3 +58,11 @@ test_that("4d areas are proportional to weights", {
     expect_that(calc_area(rand2x3x4x5, type), has_proportional_areas())
   }
 })
+
+
+test_that("missing values are handled correctly", {
+  expect_that(add_area(prodcalc(happy, ~ age + year)),
+    has_proportional_areas())
+  
+  
+})
