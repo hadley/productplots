@@ -10,7 +10,7 @@ hspline <- function(data, offset = 0.01, max = NULL) {
   # n + 1 offsets
   offsets <- c(0, rep(1, n - 1), 0) * offset
   
-  data <- prop(data) * (1 - sum(offsets))
+  data <- data * (1 - sum(offsets))
   
   widths <- as.vector(t(cbind(data, offsets[-1])))
   widths[is.na(widths)] <- 0
@@ -35,8 +35,7 @@ hbar <- function(data, offset = 0.02, max = NULL) {
   offsets <- c(0, rep(1, n - 1), 0) * offset
   
   width <- (1 - sum(offsets)) / n
-  # Heights must sum to 1
-  heights <- data  / max / sum(data, na.rm = TRUE)
+  heights <- data / max
   
   widths <- as.vector(t(cbind(width, offsets[-1])))
   pos <- c(offsets[1], cumsum(widths)) / sum(widths)

@@ -43,6 +43,7 @@ divide_once <- function(data, bounds, divider, level = 1, max_wt = NULL) {
     wt <- data$.wt
   }
   
+  wt <- prop(wt)
   if (is.null(max_wt)) max_wt <- max(wt, na.rm = TRUE)
   
   partition <- divider(wt, max = max_wt)
