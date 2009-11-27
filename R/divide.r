@@ -39,6 +39,8 @@ divide_once <- function(data, bounds, divider, level = 1, max_wt = NULL) {
   if (d > 1) {
     data[-ncol(data)] <- lapply(data[-ncol(data)], addNA, ifany = TRUE)
     wt <- tapply(data$.wt, data[-ncol(data)], identity)
+    # This ensures that the order of the data matches the order tapply uses
+    data <- as.data.frame.table(wt, responseName = ".wt")
   } else {
     wt <- data$.wt
   }
