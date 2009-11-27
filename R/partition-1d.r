@@ -53,10 +53,6 @@ vbar <- function(data, offset = 0.02, max = NULL) {
 # squarified: 
 # http://www.win.tue.nl/~vanwijk/stm.pdf
 # http://www.cs.umd.edu/hcil/treemap-history/Treemaps-Java-Algorithms.zip
-# 
-# portfolio::map.market
-
-# data will be an array
 treemap <- function(data) {
   
 }

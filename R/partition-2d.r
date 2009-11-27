@@ -2,7 +2,7 @@ fluct <- function(data, offset = 0.05, max = NULL) {
   if (is.null(max)) max <- 1
 
   # Size should be number between 0 and 1, reflecting total amount of cell to
-  # take amount
+  # take up
   sizes <- sqrt(data / max) * (1 - offset)
   
   xmin <- (col(data) - 1) / ncol(data)
