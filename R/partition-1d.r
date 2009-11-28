@@ -49,10 +49,3 @@ hbar <- function(data, offset = 0.02, max = NULL) {
 vbar <- function(data, offset = 0.02, max = NULL) {
   rotate(hbar(data, offset, max = max))
 }
-
-# squarified: 
-# http://www.win.tue.nl/~vanwijk/stm.pdf
-# http://www.cs.umd.edu/hcil/treemap-history/Treemaps-Java-Algorithms.zip
-treemap <- function(data) {
-  
-}
