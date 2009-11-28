@@ -8,7 +8,10 @@ margin <- function(table, marginals = c(), conditionals = c()) {
   marg <- weighted.table(table[c(conditionals, marginals)], table$.wt)
   
   if (length(conditionals) > 0) {
-    marg$.wt <- ave(marg$.wt, ninteraction(marg[conditionals]), FUN = prop)
+    # Work around bug in ninteraction
+    cond <- marg[conditionals]
+    cond[] <- lapply(cond, addNA, ifany = TRUE)
+    marg$.wt <- ave(marg$.wt, ninteraction(cond), FUN = prop)
     marg
   } else {
     marg
