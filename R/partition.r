@@ -19,3 +19,16 @@ squeeze <- function(pieces, bounds = bound()) {
 bound <- function(t = 1, r = 1, b = 0, l = 0) {
   data.frame(xmax = t, xmin = b, ymax = r, ymin = l)
 }
+
+
+set_offset <- function(dividers, offset) {
+  if (length(offset) < length(dividers)) {
+    offset <- rep(offset, length = length(dividers))
+  }
+  
+  lapply(seq_along(dividers), function(i) {
+    div <- dividers[[i]]
+    if (is.character(div)) div <- match.fun(div)
+    function(...) div(..., offset = offset[[i]])
+  })
+}
