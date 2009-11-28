@@ -1,6 +1,9 @@
-prodcalc <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE) {
+prodcalc <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE) {
   vars <- parse_product_formula(formula)
   wt <- margin(data, vars$marg, vars$cond)
+  if (na.rm) {
+    wt <- wt[complete.cases(wt), ]
+  }
 
   if (is.function(divider)) divider <- divider(ncol(wt) - 1)
   if (is.character(divider)) divider <- llply(divider, match.fun)
@@ -10,8 +13,8 @@ prodcalc <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
   divide(wt, divider = rev(divider), cascade = cascade, max_wt = max_wt)
 }
 
-prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, ...) {
-  res <- prodcalc(data, formula, divider, cascade, scale_max)
+prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE, ...) {
+  res <- prodcalc(data, formula, divider, cascade, scale_max, na.rm = na.rm)
   draw(res, ...)
 }
 
