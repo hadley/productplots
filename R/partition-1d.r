@@ -5,7 +5,7 @@ rotate <- function(data) {
   ))
 }
 
-hspline <- function(data, offset = 0.01, max = NULL) {
+hspline <- function(data, bounds, offset = 0.01, max = NULL) {
   n <- length(data)
   # n + 1 offsets
   offsets <- c(0, rep(1, n - 1), 0) * offset
@@ -16,18 +16,19 @@ hspline <- function(data, offset = 0.01, max = NULL) {
   widths[is.na(widths)] <- 0
   
   pos <- c(offsets[1], cumsum(widths)) / sum(widths)
-  data.frame(
+  locations <- data.frame(
     xmin = pos[seq(1, 2 * n - 1, by = 2)],
     xmax = pos[seq(2, 2 * n, by = 2)],
     ymin = 0,
     ymax = 1
   )
+  squeeze(locations, bounds)
 }
-vspline <- function(data, offset = 0.01, max = NULL) {
-  rotate(hspline(data, offset, max = max))
+vspline <- function(data, bounds, offset = 0.01, max = NULL) {
+  rotate(hspline(data, rotate(bounds), offset, max = max))
 }
 
-hbar <- function(data, offset = 0.02, max = NULL) {
+hbar <- function(data, bounds, offset = 0.02, max = NULL) {
   if (is.null(max)) max <- 1
   
   n <- length(data)
@@ -39,13 +40,14 @@ hbar <- function(data, offset = 0.02, max = NULL) {
   
   widths <- as.vector(t(cbind(width, offsets[-1])))
   pos <- c(offsets[1], cumsum(widths)) / sum(widths)
-  data.frame(
+  locations <- data.frame(
     xmin = pos[seq(1, 2 * n - 1, by = 2)],
     xmax = pos[seq(2, 2 * n, by = 2)],
     ymin = 0,
     ymax = heights
   )
+  squeeze(locations, bounds)
 }
-vbar <- function(data, offset = 0.02, max = NULL) {
-  rotate(hbar(data, offset, max = max))
+vbar <- function(data, bounds, offset = 0.02, max = NULL) {
+  rotate(hbar(data, rotate(bounds), offset, max = max))
 }

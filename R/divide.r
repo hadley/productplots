@@ -48,6 +48,6 @@ divide_once <- function(data, bounds, divider, level = 1, max_wt = NULL) {
   wt <- prop(wt)
   if (is.null(max_wt)) max_wt <- max(wt, na.rm = TRUE)
   
-  partition <- divider(wt, max = max_wt)
-  cbind(data, squeeze(partition, bounds), level = level)
+  partition <- divider(wt, bounds, max = max_wt)
+  cbind(data, partition, level = level)
 }
