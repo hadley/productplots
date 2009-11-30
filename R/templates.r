@@ -3,9 +3,9 @@
 mosaic <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
-    splits <- c("hspline", "vspline")
+    splits <- c("hspine", "vspine")
   } else {
-    splits <- c("vspline", "hspline")
+    splits <- c("vspine", "hspine")
   }
   
   function(n) rep(splits, length = n)
@@ -14,9 +14,9 @@ mosaic <- function(direction = "h") {
 stacked <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
-    splits <- c("hbar", "vspline")
+    splits <- c("hbar", "vspine")
   } else {
-    splits <- c("vbar", "hspline")
+    splits <- c("vbar", "hspine")
   }
 
   function(n) c(splits[1], rep(splits[2], length = n - 1))
@@ -34,9 +34,9 @@ nested <- function(direction = "h") {
 ddecker <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
-    splits <- c("hspline", "vspline")
+    splits <- c("hspine", "vspine")
   } else {
-    splits <- c("vspline", "hspline")
+    splits <- c("vspine", "hspine")
   }
 
   function(n) c(rep(splits[1], length = n - 1), splits[2])
@@ -45,9 +45,9 @@ ddecker <- function(direction = "h") {
 flucts <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
-    splits <- c("hspline", "vspline")
+    splits <- c("hspine", "vspine")
   } else {
-    splits <- c("vspline", "hspline")
+    splits <- c("vspine", "hspine")
   }
   function(n) c(rep(splits, length = n - 2), "fluct")
 }

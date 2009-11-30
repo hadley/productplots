@@ -7,11 +7,12 @@ test_that("2d areas are proportional to weights", {
 
   types <- list(
     c(hbar, hbar),
-    c(hspline, hbar),
-    c(hbar, vspline),
-    c(vspline, hbar),
-    c(vspline, vspline),
-    c(fluct)
+    c(hspine, hbar),
+    c(hbar, vspine),
+    c(vspine, hbar),
+    c(vspine, vspine),
+    c(fluct),
+    c(treemap)
   )
 
   for(type in types) {
@@ -24,17 +25,17 @@ test_that("3d areas are proportional to weights", {
 
   types <- list(
     c(hbar, hbar, hbar),
-    c(hbar, hbar, vspline),
-    c(hbar, vspline, hbar),
-    c(hbar, vspline, vspline),
+    c(hbar, hbar, vspine),
+    c(hbar, vspine, hbar),
+    c(hbar, vspine, vspine),
     c(hbar, fluct),
-    c(vspline, hbar, hbar),
-    c(vspline, hbar, vspline),
-    c(vspline, vspline, hbar),
-    c(vspline, vspline, vspline),
-    c(vspline, fluct),
+    c(vspine, hbar, hbar),
+    c(vspine, hbar, vspine),
+    c(vspine, vspine, hbar),
+    c(vspine, vspine, vspine),
+    c(vspine, fluct),
     c(fluct, hbar, hbar),
-    c(fluct, hbar, vspline)
+    c(fluct, hbar, vspine)
   )
 
   for(type in types) {
@@ -50,8 +51,8 @@ test_that("4d areas are proportional to weights", {
     c(hbar, fluct, hbar),
     c(hbar, hbar, fluct),
     c(fluct, fluct),
-    c(hbar, vspline, hbar, vspline),
-    c(fluct, hbar, vspline)
+    c(hbar, vspine, hbar, vspine),
+    c(fluct, hbar, vspine)
   )
 
   for(type in types) {

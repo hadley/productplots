@@ -3,6 +3,8 @@
 treemap <- function(data, bounds, max = 1) {
   if (length(data) == 0) return()
   
+  data <- data / max
+  
   h <- bounds$ymax - bounds$ymin
   w <- bounds$xmax - bounds$xmin
   x <- bounds$xmin
@@ -15,7 +17,7 @@ treemap <- function(data, bounds, max = 1) {
   
   if (w < h) { # Tall and skinny
     if (length(data) <= 2) {
-      return(vspline(data, bounds, offset = 0))
+      return(vspine(data, bounds, offset = 0))
     }
     
     while (mid <= length(data)) {
@@ -27,12 +29,12 @@ treemap <- function(data, bounds, max = 1) {
     }
     
     rbind(
-      vspline(data[1:mid],    bound(y + h,     x + w, y + h * b, x), offset = 0),
+      vspine(data[1:mid],    bound(y + h,     x + w, y + h * b, x), offset = 0),
       treemap(data[-(1:mid)], bound(y + h * b, x + w, y,         x)))
       
   } else {  # Short and fat
     if (length(data) <= 2) {
-      return(hspline(data, bounds, offset = 0))
+      return(hspine(data, bounds, offset = 0))
     }
 
     while (mid <= length(data)) {
@@ -44,7 +46,7 @@ treemap <- function(data, bounds, max = 1) {
     
     # browser()
     rbind(
-      hspline(data[1:mid],    bound(y + h, x + w * b, y, x), offset = 0),
+      hspine(data[1:mid],    bound(y + h, x + w * b, y, x), offset = 0),
       treemap(data[-(1:mid)], bound(y + h, x + w,     y, x + w * b)))
   }
 }

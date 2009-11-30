@@ -5,7 +5,7 @@ rotate <- function(data) {
   ))
 }
 
-hspline <- function(data, bounds, offset = 0.01, max = NULL) {
+hspine <- function(data, bounds, offset = 0.01, max = NULL) {
   n <- length(data)
   # n + 1 offsets
   offsets <- c(0, rep(1, n - 1), 0) * offset
@@ -24,8 +24,8 @@ hspline <- function(data, bounds, offset = 0.01, max = NULL) {
   )
   squeeze(locations, bounds)
 }
-vspline <- function(data, bounds, offset = 0.01, max = NULL) {
-  rotate(hspline(data, rotate(bounds), offset, max = max))
+vspine <- function(data, bounds, offset = 0.01, max = NULL) {
+  rotate(hspine(data, rotate(bounds), offset, max = max))
 }
 
 hbar <- function(data, bounds, offset = 0.02, max = NULL) {
