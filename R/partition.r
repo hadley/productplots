@@ -21,7 +21,7 @@ bound <- function(t = 1, r = 1, b = 0, l = 0) {
 }
 
 
-set_offset <- function(dividers, offset) {
+set_offset <- function(dividers, offset = 0) {
   if (length(offset) < length(dividers)) {
     offset <- rep(offset, length = length(dividers))
   }
