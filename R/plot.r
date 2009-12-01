@@ -43,6 +43,7 @@ parse_product_formula <- function(f) {
   }
   
   marg <- as.character(as.quoted(marg))
+  marg <- marg[marg != "."]
   if (is.null(cond)) {
     cond <- character()
   } else {
