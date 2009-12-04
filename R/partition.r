@@ -29,6 +29,8 @@ set_offset <- function(dividers, offset = 0) {
   lapply(seq_along(dividers), function(i) {
     div <- dividers[[i]]
     if (is.character(div)) div <- match.fun(div)
-    function(...) div(..., offset = offset[[i]])
+    f <- function(...) div(..., offset = offset[[i]])
+    mostattributes(f) <- attributes(div)
+    f
   })
 }
