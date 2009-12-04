@@ -21,7 +21,7 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
 draw <- function(df, alpha = 1, colour = "grey30") {
   ggplot(df, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, order = level)) + 
     geom_rect(colour = colour, alpha = alpha) +
-    xlab(NULL) + ylab(NULL)
+    make_labels(df)
 }
 
 colour_weight <- list(
