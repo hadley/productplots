@@ -18,7 +18,7 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
   draw(res, ...)
 }
 
-draw <- function(df, alpha = 1, colour = "black") {
+draw <- function(df, alpha = 1, colour = "grey30") {
   ggplot(df, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, order = level)) + 
     geom_rect(colour = colour, alpha = alpha) +
     xlab(NULL) + ylab(NULL)
