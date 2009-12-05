@@ -19,7 +19,7 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
 }
 
 draw <- function(df, alpha = 1, colour = "grey30") {
-  ggplot(df, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, order = level)) + 
+  ggplot(df, aes(xmin = l, xmax = r, ymin = b, ymax = t, order = level)) + 
     geom_rect(colour = colour, alpha = alpha) +
     make_labels(df)
 }

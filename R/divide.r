@@ -11,8 +11,8 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
 
   parent <- divide_once(parent_data, bounds, divider[[1]], level, max_wt)
   parentc <- transform(parent, 
-    xmin = xmin + cascade, ymin = ymin + cascade, 
-    xmax = xmax + cascade, ymax = ymax + cascade)
+    l = l + cascade, b = b + cascade, 
+    r = r + cascade, t = t + cascade)
   
   # browser()
   if (is.null(max_wt)) {

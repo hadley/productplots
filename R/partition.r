@@ -1,23 +1,23 @@
 partd <- function(x) nulldefault(attr(x, "d"), 1)
 
 add_area <- function(df) {
-  transform(df, area = (xmax - xmin) * (ymax - ymin))
+  transform(df, area = (r - l) * (t - b))
 }
 
 # Squeeze pieces to lie within specified bounds
 squeeze <- function(pieces, bounds = bound()) {
-  scale_x <- with(bounds, function(x) x * (xmax - xmin) + xmin)
-  scale_y <- with(bounds, function(y) y * (ymax - ymin) + ymin)
+  scale_x <- with(bounds, function(x) x * (r - l) + l)
+  scale_y <- with(bounds, function(y) y * (t - b) + b)
   
   transform(pieces,
-    xmin = scale_x(xmin), xmax = scale_x(xmax),
-    ymin = scale_y(ymin), ymax = scale_y(ymax)
+    l = scale_x(l), r = scale_x(r),
+    b = scale_y(b), t = scale_y(t)
   )
 }
 
 # Convenience function to create bounds
 bound <- function(t = 1, r = 1, b = 0, l = 0) {
-  data.frame(xmax = t, xmin = b, ymax = r, ymin = l)
+  data.frame(r = t, l = b, t = r, b = l)
 }
 
 

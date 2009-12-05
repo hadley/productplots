@@ -5,10 +5,10 @@ treemap <- function(data, bounds, max = 1) {
   
   data <- data / max
   
-  h <- bounds$ymax - bounds$ymin
-  w <- bounds$xmax - bounds$xmin
-  x <- bounds$xmin
-  y <- bounds$ymin
+  h <- bounds$t - bounds$b
+  w <- bounds$r - bounds$l
+  x <- bounds$l
+  y <- bounds$b
 
   mid <- 1
   

@@ -5,16 +5,16 @@ fluct <- function(data, bounds, offset = 0.05, max = NULL) {
   # take up
   sizes <- sqrt(data / max) * (1 - offset)
   
-  xmin <- (col(data) - 1) / ncol(data)
-  ymin <- (row(data) - 1) / nrow(data)
+  l <- (col(data) - 1) / ncol(data)
+  b <- (row(data) - 1) / nrow(data)
   width <- sizes / ncol(data)
   height <- sizes / nrow(data)
 
   locations <- data.frame(
-    xmin = as.vector(xmin),
-    ymin = as.vector(ymin),
-    xmax = as.vector(xmin + width),
-    ymax = as.vector(ymin + height)
+    l = as.vector(l),
+    b = as.vector(b),
+    r = as.vector(l + width),
+    t = as.vector(b + height)
   )
   squeeze(locations, bounds)
   

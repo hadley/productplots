@@ -1,7 +1,7 @@
 rotate <- function(data) {
   with(data, data.frame(
-    xmin = ymin, xmax = ymax,
-    ymin = xmin, ymax = xmax
+    l = b, r = t,
+    b = l, t = r
   ))
 }
 
@@ -17,10 +17,10 @@ hspine <- function(data, bounds, offset = 0.01, max = NULL) {
   
   pos <- c(offsets[1], cumsum(widths)) / sum(widths)
   locations <- data.frame(
-    xmin = pos[seq(1, 2 * n - 1, by = 2)],
-    xmax = pos[seq(2, 2 * n, by = 2)],
-    ymin = 0,
-    ymax = 1
+    l = pos[seq(1, 2 * n - 1, by = 2)],
+    r = pos[seq(2, 2 * n, by = 2)],
+    b = 0,
+    t = 1
   )
   squeeze(locations, bounds)
 }
@@ -41,10 +41,10 @@ hbar <- function(data, bounds, offset = 0.02, max = NULL) {
   widths <- as.vector(t(cbind(width, offsets[-1])))
   pos <- c(offsets[1], cumsum(widths)) / sum(widths)
   locations <- data.frame(
-    xmin = pos[seq(1, 2 * n - 1, by = 2)],
-    xmax = pos[seq(2, 2 * n, by = 2)],
-    ymin = 0,
-    ymax = heights
+    l = pos[seq(1, 2 * n - 1, by = 2)],
+    r = pos[seq(2, 2 * n, by = 2)],
+    b = 0,
+    t = heights
   )
   squeeze(locations, bounds)
 }

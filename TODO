@@ -15,5 +15,3 @@ Make it possible to only display selected levels in plot.
 Change default fill colour to lighter grey.
 
 Top-level axis labels.  Extract the level == 1 subset, figure direction of splitting (v, h, or both) and compute appropriate locations.  Then create custom axes.  (Might be able to do for additional levels as well, provide certain conditions are met)
-
-Rename xmin, xmax, ymin, ymax to l, r, b, t
