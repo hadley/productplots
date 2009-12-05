@@ -14,7 +14,7 @@ scale_x_product <- function(df) {
   col <- levels[which(cols)[1]]
   
   if (is.na(col)) {
-    scale_x_continuous(breaks = seq(0, 1, length = 4), labels = rep("", 4))
+    scale_x_continuous("", breaks = seq(0, 1, length = 4), labels = rep("", 4))
   } else {
     labels <- col_labels(df[df$level == col, ])
     
@@ -35,14 +35,23 @@ col_labels <- function(df) {
   df <- ddply(df, "l", function(df) {
     # If width is constant, draw in the middle, otherwise draw on the left.
     widths <- df$r - df$l
-    w <- unique(widths[widths != 0])
-    if (length(w) == 1) {
-      pos <- df$l[1] + w / 2
+    widths <- widths[widths != 0]
+    constant <- length(unique(widths) == 1) || cv(widths, na.rm) < 0.01      
+        
+    if (constant) {
+      pos <- df$l[1] + widths[1] / 2
     } else {
       pos <- df$l[1]
     }
-     
-    data.frame(pos, label = df[vars[1], ])
+    
+    # Hack currently for treemap case 
+    labels <- uniquecols(df[vars])
+    if (ncol(labels) == 0) {
+      labels <- df[, vars[1]]
+    } else {
+      labels <- labels[, 1]
+    }
+    data.frame(pos, label = labels)
   })
 }
 
@@ -58,6 +67,8 @@ has_cols <- function(df) {
 has_rows <- function(df) {
   has_cols(rotate(df))
 }
+
+cv <- function(x, na.rm = FALSE) sd(x, na.rm) / mean(x, na.rm)
 
 # Find the first levels for have rows or columns
 find_label_levels <- function(df) {
