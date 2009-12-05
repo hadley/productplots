@@ -5,6 +5,17 @@ rotate <- function(data) {
   ))
 }
 
+spine <- function(data, bounds, offset = 0.01, max = NULL) {
+  w <- with(bounds, r - l)
+  h <- with(bounds, t - b)
+  
+  if (w > h) {
+    hspine(data, bounds, offset, max)
+  } else {
+    vspine(data, bounds, offset, max)    
+  }
+}
+
 hspine <- function(data, bounds, offset = 0.01, max = NULL) {
   n <- length(data)
   # n + 1 offsets
