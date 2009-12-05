@@ -22,6 +22,10 @@ scale_x_product <- function(df) {
   }
 }
 
+#' Find the first level which has columns.
+#'
+#' Returns \code{NA} if no columns at any level.
+#' @param df data frame of rectangle positions
 find_col_level <- function(df) {
   levels <- unique(df$level)
   cols <- sapply(levels, function(i) has_cols(df[df$level == i, ]))
@@ -32,11 +36,12 @@ find_col_level <- function(df) {
 col_labels <- function(df) {
   vars <- setdiff(names(df), c(".wt", "l", "r", "t", "b", "level"))
   
-  df <- ddply(df, "l", function(df) {
+  ddply(df, "l", function(df) {
     # If width is constant, draw in the middle, otherwise draw on the left.
     widths <- df$r - df$l
     widths <- widths[widths != 0]
-    constant <- length(unique(widths) == 1) || cv(widths, na.rm) < 0.01      
+    constant <- length(widths) != 0 && 
+      (length(unique(widths)) <= 1 || cv(widths, T) < 0.01)
         
     if (constant) {
       pos <- df$l[1] + widths[1] / 2
