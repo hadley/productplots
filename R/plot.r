@@ -13,8 +13,12 @@ prodcalc <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
   divide(wt, divider = rev(divider), cascade = cascade, max_wt = max_wt)
 }
 
-prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE, ...) {
+prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE, subset, ...) {
   res <- prodcalc(data, formula, divider, cascade, scale_max, na.rm = na.rm)
+  if (!missing(subset)) {
+    sel <- eval(substitute(subset), res, parent.frame())
+    res <- res[sel & !is.na(sel), ]
+  }
   draw(res, ...)
 }
 

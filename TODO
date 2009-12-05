@@ -6,8 +6,6 @@ Need to be able to specify offset somehow.
   
 Extend formula specification to allow weighting variable on left-hand side
 
-Make it possible to only display selected levels in plot.
-
 Change default fill colour to lighter grey.
 
 Top-level axis labels.  Extract the level == 1 subset, figure direction of splitting (v, h, or both) and compute appropriate locations.  Then create custom axes.  (Might be able to do for additional levels as well, provide certain conditions are met)
