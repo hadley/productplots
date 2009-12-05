@@ -14,7 +14,6 @@ test_that("hbar, hspine, and fluct all have columns", {
   # And vbar, vspine and tile should _not_ have columns
   expect_that(div_has_cols(c("hspine", "vbar")), is_false())
   expect_that(div_has_cols(c("hspine", "vspine")), is_false())
-  expect_that(div_has_cols(c("hspine", "tile")), is_false())
   
   # At the second level, columns should occur for hbar nested inside
   # hbars, hspines or vspines
@@ -41,12 +40,14 @@ test_that("vbar, vspine and fluct all have rows", {
 test_that("labelling levels identified corrected", {
   
   a <- prodcalc(happy, ~ finrela + degree, "fluct", na.rm = T)
-  expect_that(find_label_levels(a), equals(c(row = 1, col = 1)))
+  expect_that(find_col_level(a), equals(1))
+  expect_that(find_row_level(a), equals(1))
   
   b <- prodcalc(happy, ~ finrela | degree, c("vbar", "hspine"), na.rm = T)
-  expect_that(find_label_levels(b), equals(c(row = 2, col = 1)))
+  expect_that(find_col_level(b), equals(1))
+  expect_that(find_row_level(b), equals(2))
 
   c <- prodcalc(happy, ~ finrela | degree, c("vbar", "vspine"), na.rm = T)
-  expect_that(find_label_levels(b), equals(c(row = 1, col = NA)))
-  
+  expect_that(find_col_level(c), equals(NA_real_))
+  expect_that(find_row_level(c), equals(1))
 })
