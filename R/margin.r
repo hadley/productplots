@@ -12,10 +12,10 @@ margin <- function(table, marginals = c(), conditionals = c()) {
     cond <- marg[conditionals]
     cond[] <- lapply(cond, addNA, ifany = TRUE)
     marg$.wt <- ave(marg$.wt, ninteraction(cond), FUN = prop)
-    marg
-  } else {
-    marg
   }
+  
+  marg$.wt[is.na(marg$.wt)] <- 0
+  marg
 }
 
 as.quoted.name <- function(x) structure(list(x), class = "quoted")

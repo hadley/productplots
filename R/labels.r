@@ -1,43 +1,70 @@
-# hbar: constant width, varying height
-# vbar: constant height, varying width
-# hspine: single height, varying width
-# vspine: single width, varying height
+# Want to label first set of columns and rows.
+# 
+# A block of rectangles occupies a column if they line up with a gap 
+# (possibly zero width) between them.  Should be within a single level.
+# 
+# A row/column can be created with a bar, fluct, or spine with constant p.
+# 
+# Find r vals of col 1 should be less than l vals of col 2
 
-make_labels <- function(df) { 
-  df$level <- df$level - min(df$level) + 1
-  top <- subset(df, level == 1)
+scale_x_product <- function(df) {
+  levels <- unique(df$level)
+  cols <- sapply(levels, function(i) has_cols(df[df$level == i, ]))
   
-  w_single <- is_constant(ninteraction(top[c("l", "r")]))
-  h_single <- is_constant(ninteraction(top[c("b", "t")]))
-
-  w_constant <- with(top, is_constant(r - l)) && !w_single
-  h_constant <- with(top, is_constant(t - b)) && !h_single
-
-  if (w_constant && h_constant) {
-    list(xlab(NULL), ylab(NULL))
-  } else if (w_constant  || h_single) {
-    # hbar or hspine: label x axis
-    pos <- with(top, (l + r) / 2)
-    list(
-      scale_x_continuous(breaks = pos, labels = top[, 1]),
-      xlab(NULL)
-    )
-  } else if (h_constant || w_single) {
-    # vbar or vspine: label y axis    
-    pos <- with(top, (b + t) / 2)
-    list(
-      scale_y_continuous(breaks = pos, labels = top[, 1]),
-      ylab(NULL)
-    )
+  col <- levels[which(cols)[1]]
+  
+  if (is.na(col)) {
+    scale_x_continuous(breaks = seq(0, 1, length = 4), labels = rep("", 4))
   } else {
-    # Fluctuation diagram or treemap
-    list(xlab(NULL), ylab(NULL))
+    labels <- col_labels(df[df$level == col, ])
     
+    scale_x_continuous("", breaks = labels$pos, labels = as.character(labels$label))
   }
 }
 
-is_constant <- function(x) sd(x, na.rm = TRUE) < 1e-8
+scale_y_product <- function(df) {
+  scale <- scale_x_product(rotate(df))
+  scale$.input <- "y"
+  scale$.output <- "y"
+  scale
+}
 
-# Alternative: use original data and partition specification to compute.
-# Probably need to make partitions objects, so can ask for labelling, or
-# at least name or direction.
+col_labels <- function(df) {
+  vars <- setdiff(names(df), c(".wt", "l", "r", "t", "b", "level"))
+  
+  df <- ddply(df, "l", function(df) {
+    # If width is constant, draw in the middle, otherwise draw on the left.
+    widths <- df$r - df$l
+    w <- unique(widths[widths != 0])
+    if (length(w) == 1) {
+      pos <- df$l[1] + w / 2
+    } else {
+      pos <- df$l[1]
+    }
+     
+    data.frame(pos, label = df[vars[1], ])
+  })
+}
+
+row_labels <- function(df) {
+  col_labels(rotate(df))
+}
+
+has_cols <- function(df) {
+  cols <- ddply(df, "l", summarise, r = max(r))
+  nrow(cols) > 1 && all(cols$l[-1] - cols$r[-nrow(cols)] >= 0)  
+}
+
+has_rows <- function(df) {
+  has_cols(rotate(df))
+}
+
+# Find the first levels for have rows or columns
+find_label_levels <- function(df) {
+  levels <- seq_len(max(df$level))
+  
+  rows <- sapply(levels, function(i) has_rows(df[df$level == i, ]))
+  cols <- sapply(levels, function(i) has_cols(df[df$level == i, ]))
+  
+  c(row = which(rows)[1], col = which(cols)[1])
+}

@@ -1,8 +1,8 @@
 rotate <- function(data) {
-  with(data, data.frame(
+  transform(data, 
     l = b, r = t,
     b = l, t = r
-  ))
+  )
 }
 
 spine <- function(data, bounds, offset = 0.01, max = NULL) {
