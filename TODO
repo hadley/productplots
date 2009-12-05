@@ -8,8 +8,6 @@ Extend formula specification to allow weighting variable on left-hand side
 
 Add spine function which automatically picks direction based on aspect ratio.
 
-Rename treemap to tile
-
 Make it possible to only display selected levels in plot.
 
 Change default fill colour to lighter grey.

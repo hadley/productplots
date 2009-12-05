@@ -1,6 +1,6 @@
 # Adapated from SquarifiedLayout in 
 # http://www.cs.umd.edu/hcil/treemap-history/Treemaps-Java-Algorithms.zip
-treemap <- function(data, bounds, max = 1) {
+tile <- function(data, bounds, max = 1) {
   if (length(data) == 0) return()
   
   data <- data / max
@@ -30,7 +30,7 @@ treemap <- function(data, bounds, max = 1) {
     
     rbind(
       vspine(data[1:mid],    bound(y + h,     x + w, y + h * b, x), offset = 0),
-      treemap(data[-(1:mid)], bound(y + h * b, x + w, y,         x)))
+      tile(data[-(1:mid)], bound(y + h * b, x + w, y,         x)))
       
   } else {  # Short and fat
     if (length(data) <= 2) {
@@ -47,7 +47,7 @@ treemap <- function(data, bounds, max = 1) {
     # browser()
     rbind(
       hspine(data[1:mid],    bound(y + h, x + w * b, y, x), offset = 0),
-      treemap(data[-(1:mid)], bound(y + h, x + w,     y, x + w * b)))
+      tile(data[-(1:mid)], bound(y + h, x + w,     y, x + w * b)))
   }
 }
 

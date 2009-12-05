@@ -12,7 +12,7 @@ test_that("2d areas are proportional to weights", {
     c(vspine, hbar),
     c(vspine, vspine),
     c(fluct),
-    c(treemap)
+    c(hbar, tile)
   )
 
   for(type in types) {
