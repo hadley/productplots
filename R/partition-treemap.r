@@ -2,8 +2,11 @@
 # http://www.cs.umd.edu/hcil/treemap-history/Treemaps-Java-Algorithms.zip
 tile <- function(data, bounds, max = 1) {
   if (length(data) == 0) return()
+  if (length(data) <= 2) {
+    return(spine(data, bounds, offset = 0))
+  }
   
-  data <- data / max
+  data <- data
   
   h <- bounds$t - bounds$b
   w <- bounds$r - bounds$l
@@ -13,15 +16,11 @@ tile <- function(data, bounds, max = 1) {
   mid <- 1
   
   a <- data[1]
-  b <- a
+  b <- a / sum(data)
   
   if (w < h) { # Tall and skinny
-    if (length(data) <= 2) {
-      return(vspine(data, bounds, offset = 0))
-    }
-    
     while (mid <= length(data)) {
-      q <- data[mid]
+      q <- data[mid] / sum(data)
       
       if (normAspect(h, w, a, b + q) > normAspect(h, w, a, b)) break
       mid <- mid + 1
@@ -29,24 +28,19 @@ tile <- function(data, bounds, max = 1) {
     }
     
     rbind(
-      vspine(data[1:mid],    bound(y + h,     x + w, y + h * b, x), offset = 0),
+      spine(data[1:mid],   bound(y + h,     x + w, y + h * b, x), offset = 0),
       tile(data[-(1:mid)], bound(y + h * b, x + w, y,         x)))
       
   } else {  # Short and fat
-    if (length(data) <= 2) {
-      return(hspine(data, bounds, offset = 0))
-    }
-
     while (mid <= length(data)) {
-      q <- data[mid]
+      q <- data[mid] / sum(data)
       if (normAspect(w, h, a, b + q) > normAspect(w, h, a, b)) break
       mid <- mid + 1
       b <- b + q
     }
     
-    # browser()
     rbind(
-      hspine(data[1:mid],    bound(y + h, x + w * b, y, x), offset = 0),
+      spine(data[1:mid],   bound(y + h, x + w * b, y, x), offset = 0),
       tile(data[-(1:mid)], bound(y + h, x + w,     y, x + w * b)))
   }
 }

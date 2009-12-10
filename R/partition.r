@@ -17,7 +17,7 @@ squeeze <- function(pieces, bounds = bound()) {
 
 # Convenience function to create bounds
 bound <- function(t = 1, r = 1, b = 0, l = 0) {
-  data.frame(r = t, l = b, t = r, b = l)
+  data.frame(t = t, r = r, b = b, l = l)
 }
 
 
