@@ -7,7 +7,7 @@ weighted.table <- function(vars, wt = NULL) {
 
   # Need to reverse order of variables because as.data.frame works in the
   # opposite way to what I want
-  sums <- tapply(wt, rev(vars), sum)
+  sums <- tapply(wt, rev(vars), sum, na.rm = TRUE)
   
   df <- as.data.frame.table(sums, responseName = ".wt")
   # Missing values represent missing combinations in the original dataset,
