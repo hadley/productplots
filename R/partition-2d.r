@@ -1,3 +1,4 @@
+#' @export
 fluct <- function(data, bounds, offset = 0.05, max = NULL) {
   if (is.null(max)) max <- 1
 

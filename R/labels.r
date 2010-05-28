@@ -7,6 +7,7 @@
 # 
 # Find r vals of col 1 should be less than l vals of col 2
 
+#' @export
 scale_x_product <- function(df) {
   col <- find_col_level(df)
   
@@ -72,6 +73,7 @@ has_cols <- function(df) {
 }
 
 # Functions for rows
+#' @export
 scale_y_product <- function(df) {
   scale <- scale_x_product(rotate(df))
   scale$.input <- "y"

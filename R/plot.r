@@ -16,6 +16,7 @@ prodcalc <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
   divide(wt, divider = rev(divider), cascade = cascade, max_wt = max_wt)
 }
 
+#' @export
 prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE, subset, ...) {
   res <- prodcalc(data, formula, divider, cascade, scale_max, na.rm = na.rm)
   if (!missing(subset)) {
@@ -32,10 +33,12 @@ draw <- function(df, alpha = 1, colour = "grey30") {
     scale_y_product(df)
 }
 
+#' @export
 colour_weight <- list(
   aes(fill = .wt), 
   scale_fill_gradient("Weight", low = "grey80", high = "black"))
 
+#' @export
 colour_level <- list(
   aes(fill = factor(level)),
   scale_fill_brewer("Level", pal = "Blues"))

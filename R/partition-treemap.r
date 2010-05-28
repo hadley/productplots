@@ -1,5 +1,6 @@
 # Adapated from SquarifiedLayout in 
 # http://www.cs.umd.edu/hcil/treemap-history/Treemaps-Java-Algorithms.zip
+#' @export
 tile <- function(data, bounds, max = 1) {
   if (length(data) == 0) return()
   if (length(data) <= 2) {

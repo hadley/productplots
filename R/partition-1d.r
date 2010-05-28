@@ -5,6 +5,7 @@ rotate <- function(data) {
   )
 }
 
+#' @export
 spine <- function(data, bounds, offset = 0.01, max = NULL) {
   w <- with(bounds, r - l)
   h <- with(bounds, t - b)
@@ -16,6 +17,7 @@ spine <- function(data, bounds, offset = 0.01, max = NULL) {
   }
 }
 
+#' @export
 hspine <- function(data, bounds, offset = 0.01, max = NULL) {
   n <- length(data)
   # n + 1 offsets
@@ -35,10 +37,12 @@ hspine <- function(data, bounds, offset = 0.01, max = NULL) {
   )
   squeeze(locations, bounds)
 }
+#' @export
 vspine <- function(data, bounds, offset = 0.01, max = NULL) {
   rotate(hspine(data, rotate(bounds), offset, max = max))
 }
 
+#' @export
 hbar <- function(data, bounds, offset = 0.02, max = NULL) {
   if (is.null(max)) max <- 1
   
@@ -59,6 +63,7 @@ hbar <- function(data, bounds, offset = 0.02, max = NULL) {
   )
   squeeze(locations, bounds)
 }
+#' @export
 vbar <- function(data, bounds, offset = 0.02, max = NULL) {
   rotate(hbar(data, rotate(bounds), offset, max = max))
 }

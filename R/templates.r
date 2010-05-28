@@ -1,5 +1,6 @@
 .directions <- c("vertical", "horizontal")
 
+#' @export
 mosaic <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
@@ -11,6 +12,7 @@ mosaic <- function(direction = "h") {
   function(n) rep(splits, length = n)
 }
 
+#' @export
 stacked <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
@@ -21,6 +23,8 @@ stacked <- function(direction = "h") {
 
   function(n) c(splits[1], rep(splits[2], length = n - 1))
 }
+
+#' @export
 nested <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
@@ -31,6 +35,8 @@ nested <- function(direction = "h") {
 
   function(n) rep(splits, length = n)
 }
+
+#' @export
 ddecker <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
@@ -42,6 +48,7 @@ ddecker <- function(direction = "h") {
   function(n) c(rep(splits[1], length = n - 1), splits[2])
 }
 
+#' @export
 flucts <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
