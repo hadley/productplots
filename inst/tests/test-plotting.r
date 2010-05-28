@@ -28,5 +28,5 @@ test_that("dummy margin variable is ignored", {
 
 test_that("weighting variable determined correctly", {
   expect_that(parse_product_formula(wt ~ a)$wt, equals("wt"))
-  expect_that(parse_product_formula( ~ a)$wt, equals(NULL))
+  expect_that(parse_product_formula( ~ a)$wt, equals(character()))
 })

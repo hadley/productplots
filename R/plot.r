@@ -38,22 +38,3 @@ colour_level <- list(
   scale_fill_brewer("Level", pal = "Blues"))
 
 
-parse_product_formula <- function(f) {
-  if (length(f[[2]]) > 1 && f[[2]][[1]] == as.name("|")) {
-    cond <- f[[2]][[3]]
-    marg <- f[[2]][[2]]
-  } else {
-    cond <- NULL
-    marg <- f
-  }
-  
-  marg <- as.character(as.quoted(marg))
-  marg <- marg[marg != "."]
-  if (is.null(cond)) {
-    cond <- character()
-  } else {
-    cond <- as.character(as.quoted.formula(cond))
-  }
-  
-  list(marg = marg, cond = cond)
-}
