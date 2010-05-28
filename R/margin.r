@@ -17,6 +17,3 @@ margin <- function(table, marginals = c(), conditionals = c()) {
   marg$.wt[is.na(marg$.wt)] <- 0
   marg
 }
-
-as.quoted.name <- function(x) structure(list(x), class = "quoted")
-

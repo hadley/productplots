@@ -4,7 +4,7 @@
 parse_product_formula <- function(f) {
   
   # Figure out weighting
-  wt <- if (is.two.sided(f)) all.vars(lhs(f)) else character()
+  wt <- if (is.binary.op(f)) all.vars(lhs(f)) else character()
   mc <- rhs(f)
   
   if (identical(op(mc), as.name("|"))) {
@@ -37,4 +37,8 @@ rhs <- function(x) {
 op <- function(x) {
   stopifnot(is.call(x) || is.name(x))
   if (length(x) == 3 || length(x) == 2) x[[1]]
+}
+
+is.binary.op <- function(x) {
+  (is.call(x)) && length(x) == 3
 }

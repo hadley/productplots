@@ -8,6 +8,6 @@ Depends: ggplot2, plyr
 License: GPL-2
 LazyData: true
 Description:
-Collate: 'divide.r' 'factorise.r' 'labels.r' 'margin.r' 'parse.r'
-    'partition-1d.r' 'partition-2d.r' 'partition-treemap.r'
-    'partition.r' 'plot.r' 'templates.r' 'utils.r' 'weighted-table.r'
+Collate: 'calculate.r' 'divide.r' 'labels.r' 'margin.r' 'parse.r'
+    'partition-1d.r' 'partition-2d.r' 'partition-tile.r' 'partition.r'
+    'plot.r' 'templates.r' 'utils.r' 'weighted-table.r'
