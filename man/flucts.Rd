@@ -1,4 +1,8 @@
 \name{flucts}
 \alias{flucts}
-\title{flucts}
+\title{Template for a fluctuation diagram.}
 \usage{flucts(direction="h")}
+
+\description{
+  Template for a fluctuation diagram.
+}

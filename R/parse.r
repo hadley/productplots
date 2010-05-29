@@ -1,6 +1,9 @@
 #' Parse product formula into component pieces
 #'
-#' 
+#' @return 
+#'   \item{wt}{the weighting variable}
+#'   \item{cond}{condition variables}
+#'   \item{margin}{margining variables}
 parse_product_formula <- function(f) {
   
   # Figure out weighting

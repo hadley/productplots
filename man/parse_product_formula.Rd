@@ -6,3 +6,6 @@
 \description{
   Parse product formula into component pieces
 }
+\value{\item{wt}{the weighting variable}
+\item{cond}{condition variables}
+\item{margin}{margining variables}}
