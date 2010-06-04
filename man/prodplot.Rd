@@ -2,7 +2,7 @@
 \alias{prodplot}
 \title{Create a product plot...}
 \usage{prodplot(data, formula, divider=mosaic(), cascade=0, scale_max=TRUE,
-    na.rm=FALSE, ...)}
+    na.rm=FALSE, subset, ...)}
 
 \description{
   Create a product plot
@@ -21,4 +21,9 @@ parent (FALSE).}
 prodplot(happy, ~ happy, "hspine")
 
 prodplot(happy, ~ sex + happy, c("vspine", "hbar"))
-prodplot(happy, ~ sex + happy, stacked())}
+prodplot(happy, ~ sex + happy, stacked())
+
+# The subset argument is applied on the results of prodcalc, and
+# so can be used to extract a given level of the plot
+prodplot(happy, ~ sex + happy, stacked(), subset = level == 1)
+prodplot(happy, ~ sex + happy, stacked(), subset = level == 2)}
