@@ -1,5 +1,6 @@
 export(scale_x_product)
 export(scale_y_product)
+export(parse_product_formula)
 export(spine)
 export(hspine)
 export(vspine)

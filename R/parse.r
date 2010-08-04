@@ -4,6 +4,8 @@
 #'   \item{wt}{the weighting variable}
 #'   \item{cond}{condition variables}
 #'   \item{margin}{margining variables}
+#'
+#' @export
 parse_product_formula <- function(f) {
   
   # Figure out weighting
