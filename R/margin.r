@@ -11,7 +11,7 @@ margin <- function(table, marginals = c(), conditionals = c()) {
     # Work around bug in ninteraction
     cond <- marg[conditionals]
     cond[] <- lapply(cond, addNA, ifany = TRUE)
-    marg$.wt <- ave(marg$.wt, ninteraction(cond), FUN = prop)
+    marg$.wt <- ave(marg$.wt, id(cond), FUN = prop)
   }
   
   marg$.wt[is.na(marg$.wt)] <- 0
