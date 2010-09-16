@@ -1,3 +1,4 @@
+export(prodcalc)
 export(scale_x_product)
 export(find_col_level)
 export(col_labels)
