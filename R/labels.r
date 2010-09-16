@@ -27,6 +27,7 @@ scale_x_product <- function(df) {
 #'
 #' Returns \code{NA} if no columns at any level.
 #' @param df data frame of rectangle positions
+#' @export
 find_col_level <- function(df) {
   levels <- unique(df$level)
   cols <- sapply(levels, function(i) has_cols(df[df$level == i, ]))
@@ -34,6 +35,7 @@ find_col_level <- function(df) {
   levels[which(cols)[1]]
 }
 
+#' @export
 col_labels <- function(df) {
   vars <- setdiff(names(df), c(".wt", "l", "r", "t", "b", "level"))
   
@@ -80,7 +82,9 @@ scale_y_product <- function(df) {
   scale$.output <- "y"
   scale
 }
+#' @export
 find_row_level <- function(df) find_col_level(rotate(df))
+#' @export
 row_labels <- function(df) col_labels(rotate(df))
 has_rows <- function(df) has_cols(rotate(df))
 

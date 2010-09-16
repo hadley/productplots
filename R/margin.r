@@ -4,7 +4,7 @@ margin <- function(table, marginals = c(), conditionals = c()) {
   
   marginals <- rev(marginals)
   conditionals <- rev(conditionals)
-  
+
   marg <- weighted.table(table[c(conditionals, marginals)], table$.wt)
   
   if (length(conditionals) > 0) {
