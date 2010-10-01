@@ -18,22 +18,17 @@
 #'
 #' # The subset argument is applied on the results of prodcalc, and
 #' # so can be used to extract a given level of the plot
-#' prodplot(happy, ~ sex + happy, stacked(), subset = level == 1)
-#' prodplot(happy, ~ sex + happy, stacked(), subset = level == 2)
+#' prodplot(happy, ~ sex + happy, stacked(), subset = .(level == 1))
+#' prodplot(happy, ~ sex + happy, stacked(), subset = .(level == 2))
 prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE, subset, ...) {
   res <- prodcalc(data, formula, divider, cascade, scale_max, na.rm = na.rm)
   
-  if (!missing(subset)) {
-    sel <- eval(substitute(subset), res, parent.frame())
-    res <- res[sel & !is.na(sel), ]
-  }
-  
-  draw(res, ...)
+  draw(res, subset = subset, ...)
 }
 
-draw <- function(df, alpha = 1, colour = "grey30") {
+draw <- function(df, alpha = 1, colour = "grey30", subset = NULL) {
   ggplot(df, aes(xmin = l, xmax = r, ymin = b, ymax = t, order = level)) + 
-    geom_rect(colour = colour, alpha = alpha) +
+    geom_rect(colour = colour, alpha = alpha, subset = subset) +
     scale_x_product(df) + 
     scale_y_product(df)
 }
