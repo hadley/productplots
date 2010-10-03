@@ -20,7 +20,7 @@
 #' # so can be used to extract a given level of the plot
 #' prodplot(happy, ~ sex + happy, stacked(), subset = .(level == 1))
 #' prodplot(happy, ~ sex + happy, stacked(), subset = .(level == 2))
-prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE, subset, ...) {
+prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE, subset = NULL, ...) {
   res <- prodcalc(data, formula, divider, cascade, scale_max, na.rm = na.rm)
   
   draw(res, subset = subset, ...)
