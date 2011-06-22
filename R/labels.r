@@ -77,7 +77,7 @@ has_cols <- function(df) {
   #  * right boundary of each column less than left boundary of next column
   #  * number of variables in each column is the same
   n > 1 && 
-    with(cols, all(l[-1] >= r[-n])) &&
+    all(cols$l[-1] >= cols$r[-n]) &&
     length(unique(cols$nvars)) == 1
 }
 

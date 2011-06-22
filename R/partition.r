@@ -4,18 +4,20 @@ partd <- function(x) {
 }
 
 add_area <- function(df) {
-  transform(df, area = (r - l) * (t - b))
+  df$area <- (df$r - df$l) * (df$t - df$b)
+  df
 }
 
 # Squeeze pieces to lie within specified bounds
 squeeze <- function(pieces, bounds = bound()) {
-  scale_x <- with(bounds, function(x) x * (r - l) + l)
-  scale_y <- with(bounds, function(y) y * (t - b) + b)
+  scale_x <- function(x) x * (bounds$r - bounds$l) + bounds$l
+  scale_y <- function(y) y * (bounds$t - bounds$b) + bounds$b
   
-  transform(pieces,
-    l = scale_x(l), r = scale_x(r),
-    b = scale_y(b), t = scale_y(t)
-  )
+  pieces$l <- scale_x(pieces$l)
+  pieces$r <- scale_x(pieces$r)
+  pieces$b <- scale_y(pieces$b)
+  pieces$t <- scale_y(pieces$t)
+  pieces
 }
 
 # Convenience function to create bounds

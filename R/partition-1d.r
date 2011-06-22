@@ -1,8 +1,5 @@
 rotate <- function(data) {
-  transform(data, 
-    l = b, r = t,
-    b = l, t = r
-  )
+  rename(data, c("l" = "b", "r" = "t", "b" = "l", "t" = "r"))
 }
 
 #' Spine partition: divide longest dimesion.
@@ -13,8 +10,8 @@ rotate <- function(data) {
 #' @param max maximum value
 #' @export
 spine <- function(data, bounds, offset = 0.01, max = NULL) {
-  w <- with(bounds, r - l)
-  h <- with(bounds, t - b)
+  w <- bounds$r - bounds$l
+  h <- bounds$t - bounds$b
   
   if (w > h) {
     hspine(data, bounds, offset, max)

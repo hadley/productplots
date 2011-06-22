@@ -33,7 +33,8 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
 }
 
 draw <- function(df, alpha = 1, colour = "grey30", subset = NULL) {
-  plot <- ggplot(df, aes(xmin = l, xmax = r, ymin = b, ymax = t)) +
+  plot <- ggplot(df, 
+    aes_string(xmin = "l", xmax = "r", ymin = "b", ymax = "t")) +
     scale_x_product(df) + 
     scale_y_product(df)
     

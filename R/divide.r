@@ -10,9 +10,11 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
   parent_data <- parent_data[, c(rev(seq_len(d)), d + 1)]
 
   parent <- divide_once(parent_data, bounds, divider[[1]], level, max_wt)
-  parentc <- transform(parent, 
-    l = l + cascade, b = b + cascade, 
-    r = r + cascade, t = t + cascade)
+  parentc <- parent
+  parentc$l <- parent$l + cascade
+  parentc$b <- parent$b + cascade
+  parentc$r <- parent$r + cascade
+  parentc$t <- parent$t + cascade
   
   # browser()
   if (is.null(max_wt)) {

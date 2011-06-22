@@ -36,8 +36,8 @@ weighted.table <- function(vars, wt = NULL) {
   df[, c(rev(seq_len(ncol(df) - 1)), ncol(df)) ]
 }
 
-weighted.table.accurate <- function(vars, wt) {
-  marg2 <- ddply(table, c(conditionals, marginals), function(df) sum(df$.wt), .drop = FALSE)
-  names(marg2)[ncol(marg2)] <- ".wt"
-  margs
-}
+# weighted.table.accurate <- function(vars, wt) {
+#   marg2 <- ddply(table, c(conditionals, marginals), function(df) sum(df$.wt), .drop = FALSE)
+#   names(marg2)[ncol(marg2)] <- ".wt"
+#   margs
+# }
