@@ -4,6 +4,6 @@
 \usage{nested(direction="h")}
 
 \description{
-  Template for a nested barchart. A nested bar is just a sequence of
-  bars in the same direction.
+  Template for a nested barchart. A nested bar is just a
+  sequence of bars in the same direction.
 }

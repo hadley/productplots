@@ -4,6 +4,6 @@
 \usage{mosaic(direction="h")}
 
 \description{
-  Template for a mosiac plot. A mosaic plot is composed of spines in
-  alternating directions.
+  Template for a mosiac plot. A mosaic plot is composed of
+  spines in alternating directions.
 }

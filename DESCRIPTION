@@ -4,10 +4,23 @@ Title:
 Version: 0.1
 Author: Hadley Wickham <h.wickham@gmail.com>
 Maintainer: Hadley Wickham <h.wickham@gmail.com>
-Depends: ggplot2, plyr
+Depends:
+    ggplot2,
+    plyr
 License: GPL-2
 LazyData: true
 Description:
-Collate: 'calculate.r' 'divide.r' 'labels.r' 'margin.r' 'parse.r'
-    'partition-1d.r' 'partition-2d.r' 'partition-tile.r' 'partition.r'
-    'plot.r' 'templates.r' 'utils.r' 'weighted-table.r'
+Collate:
+    'calculate.r'
+    'divide.r'
+    'labels.r'
+    'margin.r'
+    'parse.r'
+    'partition-1d.r'
+    'partition-2d.r'
+    'partition-tile.r'
+    'partition.r'
+    'plot.r'
+    'templates.r'
+    'utils.r'
+    'weighted-table.r'
