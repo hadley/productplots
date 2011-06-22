@@ -24,10 +24,12 @@ calc_area <- function(mat, divider) {
 #' Standardise weight and area to sum to 1 within a level, and calulate ratio
 #' between the two.
 calc_ratio <- function(dims) {
-  ddply(dims, "level", transform, 
-    .wt = prop(.wt), 
-    area = prop(area), 
-    ratio = prop(area) / prop(.wt))
+  ddply(dims, "level", function(df) {
+    transform(df, 
+      .wt = prop(.wt), 
+      area = prop(area), 
+      ratio = prop(area) / prop(.wt))
+  })
 }
 
 
