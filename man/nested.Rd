@@ -7,3 +7,6 @@
   Template for a nested barchart. A nested bar is just a
   sequence of bars in the same direction.
 }
+\arguments{
+  \item{direction}{direction of first split}
+}

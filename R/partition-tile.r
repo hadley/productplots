@@ -1,5 +1,10 @@
-# Adapated from SquarifiedLayout in 
-# http://www.cs.umd.edu/hcil/treemap-history/Treemaps-Java-Algorithms.zip
+#' Tree map partitioning.
+#'
+#' Adapated from SquarifiedLayout in 
+#' \url{http://www.cs.umd.edu/hcil/treemap-history/Treemaps-Java-Algorithms.zip}
+#' @param data bounds data frame
+#' @param bounds bounds of space to partition
+#' @param max maximum value
 #' @export
 tile <- function(data, bounds, max = 1) {
   if (length(data) == 0) return()

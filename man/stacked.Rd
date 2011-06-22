@@ -8,3 +8,6 @@
   starts with a bar and then continues with spines in the
   opposite direction.
 }
+\arguments{
+  \item{direction}{direction of first split}
+}

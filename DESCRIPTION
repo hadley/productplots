@@ -23,5 +23,6 @@ Collate:
     'partition-tile.r'
     'partition.r'
     'plot.r'
+    'productplots.r'
     'templates.r'
     'utils.r'

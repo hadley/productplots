@@ -7,6 +7,9 @@
 # 
 # Find r vals of col 1 should be less than l vals of col 2
 
+#' Generate an x-scale for ggplot2 graphics.
+#'
+#' @param df data frame produced by \code{\link{prodcalc}}
 #' @export
 scale_x_product <- function(df) {
   col <- find_col_level(df)
@@ -35,6 +38,10 @@ find_col_level <- function(df) {
   levels[which(cols)[1]]
 }
 
+#' Calculate column labels.
+#' 
+#' @keywords  internal
+#' @param df data frame produced by \code{\link{prodcalc}}
 #' @export
 col_labels <- function(df) {
   vars <- setdiff(names(df), c(".wt", "l", "r", "t", "b", "level"))
@@ -75,6 +82,10 @@ has_cols <- function(df) {
 }
 
 # Functions for rows
+
+#' Generate a y-scale for ggplot2 graphics.
+#'
+#' @param df data frame produced by \code{\link{prodcalc}}
 #' @export
 scale_y_product <- function(df) {
   scale <- scale_x_product(rotate(df))
@@ -82,8 +93,18 @@ scale_y_product <- function(df) {
   scale$.output <- "y"
   scale
 }
+
+#' Find the first level which has rows.
+#'
+#' Returns \code{NA} if no rows at any level.
+#' @param df data frame of rectangle positions
 #' @export
 find_row_level <- function(df) find_col_level(rotate(df))
+
+#' Calculate row labels.
+#' 
+#' @param df data frame produced by \code{\link{prodcalc}}
+#' @keywords  internal
 #' @export
 row_labels <- function(df) col_labels(rotate(df))
 has_rows <- function(df) has_cols(rotate(df))

@@ -2,6 +2,8 @@
 
 #' Template for a mosiac plot.
 #' A mosaic plot is composed of spines in alternating directions.
+#' 
+#' @param direction direction of first split
 #' @export
 mosaic <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
@@ -17,6 +19,8 @@ mosaic <- function(direction = "h") {
 #' Template for a stacked bar chart.
 #' A stacked bar chart starts with a bar and then continues with spines in the 
 #' opposite direction.
+#'
+#' @param direction direction of first split
 #' @export
 stacked <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
@@ -31,6 +35,8 @@ stacked <- function(direction = "h") {
 
 #' Template for a nested barchart.
 #' A nested bar is just a sequence of bars in the same direction.
+#'
+#' @param direction direction of first split
 #' @export
 nested <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
@@ -46,6 +52,8 @@ nested <- function(direction = "h") {
 #' Template for a double decker plot.
 #' A double decker plot is composed of a sequence of spines in the same 
 #' direction, with the final spine in the opposite direction.
+#'
+#' @param direction direction of first split
 #' @export
 ddecker <- function(direction = "h") {
   direction <- match.arg(direction, .directions)
@@ -59,6 +67,8 @@ ddecker <- function(direction = "h") {
 }
 
 #' Template for a fluctuation diagram.
+#'
+#' @param direction direction of first split
 #' @export
 flucts <- function(direction = "h") {
   direction <- match.arg(direction, .directions)

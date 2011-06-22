@@ -4,7 +4,8 @@
 #'   \item{wt}{the weighting variable}
 #'   \item{cond}{condition variables}
 #'   \item{margin}{margining variables}
-#'
+#' @param f function to parse into component pieces
+#' @keywords internal
 #' @export
 parse_product_formula <- function(f) {
   

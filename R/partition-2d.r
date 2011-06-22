@@ -1,3 +1,9 @@
+#' Fluctation partitioning.
+#'
+#' @param data bounds data frame
+#' @param bounds bounds of space to partition
+#' @param offset space between spines
+#' @param max maximum value
 #' @export
 fluct <- function(data, bounds, offset = 0.05, max = NULL) {
   if (is.null(max)) max <- 1

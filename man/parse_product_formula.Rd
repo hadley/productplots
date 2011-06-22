@@ -9,3 +9,7 @@
 \value{\item{wt}{the weighting variable}
 \item{cond}{condition variables}
 \item{margin}{margining variables}}
+\keyword{internal}
+\arguments{
+  \item{f}{function to parse into component pieces}
+}

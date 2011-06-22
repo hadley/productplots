@@ -5,6 +5,12 @@ rotate <- function(data) {
   )
 }
 
+#' Spine partition: divide longest dimesion.
+#'
+#' @param data bounds data frame
+#' @param bounds bounds of space to partition
+#' @param offset space between spines
+#' @param max maximum value
 #' @export
 spine <- function(data, bounds, offset = 0.01, max = NULL) {
   w <- with(bounds, r - l)
@@ -17,6 +23,13 @@ spine <- function(data, bounds, offset = 0.01, max = NULL) {
   }
 }
 
+
+#' Horizontal spine partition: height constant, width varies.
+#'
+#' @param data bounds data frame
+#' @param bounds bounds of space to partition
+#' @param offset space between spines
+#' @param max maximum value
 #' @export
 hspine <- function(data, bounds, offset = 0.01, max = NULL) {
   n <- length(data)
@@ -37,11 +50,24 @@ hspine <- function(data, bounds, offset = 0.01, max = NULL) {
   )
   squeeze(locations, bounds)
 }
+
+#' Vertical spine partition: width constant, height varies.
+#'
+#' @param data bounds data frame
+#' @param bounds bounds of space to partition
+#' @param offset space between spines
+#' @param max maximum value
 #' @export
 vspine <- function(data, bounds, offset = 0.01, max = NULL) {
   rotate(hspine(data, rotate(bounds), offset, max = max))
 }
 
+#' Horizontal bar partition: width constant, height varies.
+#'
+#' @param data bounds data frame
+#' @param bounds bounds of space to partition
+#' @param offset space between spines
+#' @param max maximum value
 #' @export
 hbar <- function(data, bounds, offset = 0.02, max = NULL) {
   if (is.null(max)) max <- 1
@@ -63,6 +89,13 @@ hbar <- function(data, bounds, offset = 0.02, max = NULL) {
   )
   squeeze(locations, bounds)
 }
+
+#' Vertical bar partition: height constant, width varies.
+#'
+#' @param data bounds data frame
+#' @param bounds bounds of space to partition
+#' @param offset space between spines
+#' @param max maximum value
 #' @export
 vbar <- function(data, bounds, offset = 0.02, max = NULL) {
   rotate(hbar(data, rotate(bounds), offset, max = max))

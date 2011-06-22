@@ -9,3 +9,6 @@
   direction, with the final spine in the opposite
   direction.
 }
+\arguments{
+  \item{direction}{direction of first split}
+}

@@ -31,8 +31,8 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
   rbind.fill(parent, children)
 }
 
-#' @param data data frame giving partitioning variables and weights.  Final
-#'   column should be called .wt and contain weights
+# @param data data frame giving partitioning variables and weights.  Final
+#   column should be called .wt and contain weights
 divide_once <- function(data, bounds, divider, level = 1, max_wt = NULL) {
   d <- partd(divider)
   # Convert into vector/matrix/array for input to divider function
