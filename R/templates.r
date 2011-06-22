@@ -1,6 +1,6 @@
 .directions <- c("vertical", "horizontal")
 
-#' Template for a mosiac plot.
+#' Template for a mosaic plot.
 #' A mosaic plot is composed of spines in alternating directions.
 #' 
 #' @param direction direction of first split
