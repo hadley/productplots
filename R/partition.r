@@ -1,4 +1,7 @@
-partd <- function(x) nulldefault(attr(x, "d"), 1)
+partd <- function(x) { 
+  d <- attr(x, "d")
+  if (!is.null(d)) d else 1
+}
 
 add_area <- function(df) {
   transform(df, area = (r - l) * (t - b))
