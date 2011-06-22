@@ -1,7 +1,18 @@
-Need to be able to specify offset somehow.
+Need to be able to specify offset somehow:
 
-  * zero offset for continuous data
-  * zero offset for polar coordinates
-  * smaller offset as dimensions increase
-  
-Transformation function
+* zero offset for continuous data
+* zero offset for polar coordinates
+* smaller offset as dimensions increase
+* default to zero offset at bottom level?
+
+Transformation function.
+
+Automatic binning for continuous variables.
+
+Look at Dykes mosaicplot labelling algorithm (big text)
+
+Labels
+
+* ability to specify which levels to use for labelling 
+  (potential multiple levels)
+* legend that displays margins in table format.
