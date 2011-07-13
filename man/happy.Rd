@@ -1,20 +1,20 @@
+\docType{data}
 \name{happy}
 \alias{happy}
 \title{Data related to happiness from the general social survey.}
-\usage{data(happy)}
-
-\description{
-  Data related to happiness from the general social survey.
+\format{A data frame with 51020 rows and 10 variables}
+\usage{
+  data(happy)
 }
-
-\details{
+\description{
   The data is a small sample of variables related to
   happiness from the general social survey (GSS). The GSS
   is a yearly cross-sectional survey of Americans, run from
   1976. We combine data for 25 years to yield 51,020
   observations, and of the over 5,000 variables, we select
   nine related to happiness:
-
+}
+\details{
   \itemize{ \item age. age in years: 18--89. \item degree.
   highest education: lt high school, high school, junior
   college, bachelor, graduate. \item finrela. relative
@@ -26,5 +26,5 @@
   separated. \item sex. sex: female, male. \item wtsall.
   probability weight. 0.43--6 }
 }
-\docType{data}
 \keyword{datasets}
+

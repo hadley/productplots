@@ -1,14 +1,19 @@
 \name{vspine}
 \alias{vspine}
 \title{Vertical spine partition: width constant, height varies.}
-\usage{vspine(data, bounds, offset=0.01, max)}
-
-\description{
-  Vertical spine partition: width constant, height varies.
+\usage{
+  vspine(data, bounds, offset = 0.01, max = NULL)
 }
 \arguments{
   \item{data}{bounds data frame}
+
   \item{bounds}{bounds of space to partition}
+
   \item{offset}{space between spines}
+
   \item{max}{maximum value}
 }
+\description{
+  Vertical spine partition: width constant, height varies.
+}
+

@@ -1,26 +1,38 @@
 \name{prodplot}
 \alias{prodplot}
-\title{Create a product plot...}
-\usage{prodplot(data, formula, divider=mosaic(), cascade=0,
-    scale_max=TRUE, na.rm=FALSE, levels=-1L, ...)}
-
-\description{
-  Create a product plot
+\title{Create a product plot}
+\usage{
+  prodplot(data, formula, divider = mosaic(), cascade = 0,
+  scale_max = TRUE, na.rm = FALSE, levels = -1L, ...)
 }
 \arguments{
   \item{data}{input data frame}
+
   \item{formula}{formula specifying display of plot}
+
   \item{divider}{divider function}
+
   \item{cascade}{cascading amount, per nested layer}
-  \item{scale_max}{Logical vector of length 1. If \code{TRUE} maximum values
-within each nested layer will be scaled to take up all available space. 
-If \code{FALSE}, areas will be comparable between nested layers.}
-  \item{na.rm}{Logical vector of length 1 - should missing levels be 
-silently removed?}
-  \item{levels}{an integer vector specifying which levels to draw.}
+
+  \item{scale_max}{Logical vector of length 1. If
+  \code{TRUE} maximum values within each nested layer will
+  be scaled to take up all available space. If
+  \code{FALSE}, areas will be comparable between nested
+  layers.}
+
+  \item{na.rm}{Logical vector of length 1 - should missing
+  levels be silently removed?}
+
+  \item{levels}{an integer vector specifying which levels
+  to draw.}
+
   \item{...}{other arguments passed on to \code{draw}}
 }
-\examples{prodplot(happy, ~ happy, "hbar")
+\description{
+  Create a product plot
+}
+\examples{
+prodplot(happy, ~ happy, "hbar")
 prodplot(happy, ~ happy, "hspine")
 
 prodplot(happy, ~ sex + happy, c("vspine", "hbar"))
@@ -28,4 +40,6 @@ prodplot(happy, ~ sex + happy, stacked())
 
 # The levels argument can be used to extract a given level of the plot
 prodplot(happy, ~ sex + happy, stacked(), level = 1)
-prodplot(happy, ~ sex + happy, stacked(), level = 2)}
+prodplot(happy, ~ sex + happy, stacked(), level = 2)
+}
+

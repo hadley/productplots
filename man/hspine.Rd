@@ -1,15 +1,20 @@
 \name{hspine}
 \alias{hspine}
 \title{Horizontal spine partition: height constant, width varies.}
-\usage{hspine(data, bounds, offset=0.01, max)}
+\usage{
+  hspine(data, bounds, offset = 0.01, max = NULL)
+}
+\arguments{
+  \item{data}{bounds data frame}
 
+  \item{bounds}{bounds of space to partition}
+
+  \item{offset}{space between spines}
+
+  \item{max}{maximum value}
+}
 \description{
   Horizontal spine partition: height constant, width
   varies.
 }
-\arguments{
-  \item{data}{bounds data frame}
-  \item{bounds}{bounds of space to partition}
-  \item{offset}{space between spines}
-  \item{max}{maximum value}
-}
+

@@ -1,14 +1,18 @@
 \name{ddecker}
 \alias{ddecker}
-\title{Template for a double decker plot.}
-\usage{ddecker(direction="h")}
-
+\title{Template for a double decker plot.
+A double decker plot is composed of a sequence of spines in the same
+direction, with the final spine in the opposite direction.}
+\usage{
+  ddecker(direction = "h")
+}
+\arguments{
+  \item{direction}{direction of first split}
+}
 \description{
   Template for a double decker plot. A double decker plot
   is composed of a sequence of spines in the same
   direction, with the final spine in the opposite
   direction.
 }
-\arguments{
-  \item{direction}{direction of first split}
-}
+
