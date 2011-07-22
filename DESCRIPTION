@@ -5,9 +5,9 @@ Version: 0.1
 Author: Hadley Wickham <h.wickham@gmail.com>
 Maintainer: Hadley Wickham <h.wickham@gmail.com>
 Depends:
-    ggplot2,
     plyr
 Suggests:
+    ggplot2,
     reshape2,
     testthat
 License: GPL-2

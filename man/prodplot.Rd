@@ -32,6 +32,7 @@
   Create a product plot
 }
 \examples{
+if (require("ggplot2")) {
 prodplot(happy, ~ happy, "hbar")
 prodplot(happy, ~ happy, "hspine")
 
@@ -41,5 +42,6 @@ prodplot(happy, ~ sex + happy, stacked())
 # The levels argument can be used to extract a given level of the plot
 prodplot(happy, ~ sex + happy, stacked(), level = 1)
 prodplot(happy, ~ sex + happy, stacked(), level = 2)
+}
 }
 

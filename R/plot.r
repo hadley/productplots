@@ -13,6 +13,7 @@
 #' @param ... other arguments passed on to \code{draw}
 #' @export
 #' @examples
+#' if (require("ggplot2")) {
 #' prodplot(happy, ~ happy, "hbar")
 #' prodplot(happy, ~ happy, "hspine")
 #'
@@ -22,7 +23,10 @@
 #' # The levels argument can be used to extract a given level of the plot
 #' prodplot(happy, ~ sex + happy, stacked(), level = 1)
 #' prodplot(happy, ~ sex + happy, stacked(), level = 2)
+#' }
 prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE, levels = -1L, ...) {
+  require("ggplot2")
+  
   res <- prodcalc(data, formula, divider, cascade, scale_max, na.rm = na.rm)
   if (!(length(levels) == 1 && is.na(levels))) {
     levels[levels < 0] <-  max(res$level) + 1 + levels[levels < 0]
@@ -33,6 +37,8 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
 }
 
 draw <- function(df, alpha = 1, colour = "grey30", subset = NULL) {
+  require("ggplot2")
+
   plot <- ggplot(df, 
     aes_string(xmin = "l", xmax = "r", ymin = "b", ymax = "t")) +
     scale_x_product(df) + 
@@ -50,14 +56,20 @@ draw <- function(df, alpha = 1, colour = "grey30", subset = NULL) {
 #'
 #' @keywords internal hplot
 #' @export
-colour_weight <- list(
-  aes(fill = .wt), 
-  scale_fill_gradient("Weight", low = "grey80", high = "black"))
+colour_weight <- function() {
+  require("ggplot2")
+  list(
+    aes(fill = .wt), 
+    scale_fill_gradient("Weight", low = "grey80", high = "black"))
+}
 
 #' For ggplot2: colour by weight.
 #'
 #' @keywords internal hplot
 #' @export
-colour_level <- list(
-  aes(fill = factor(level)),
-  scale_fill_brewer("Level", pal = "Blues"))
+colour_level <- function() { 
+  require("ggplot2")
+  list(
+    aes(fill = factor(level)),
+    scale_fill_brewer("Level", pal = "Blues"))
+}
