@@ -26,3 +26,6 @@
 #' @usage data(happy)
 #' @format A data frame with 51020 rows and 10 variables
 NULL
+
+#' @import plyr
+NULL
