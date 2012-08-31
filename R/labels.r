@@ -46,7 +46,7 @@ find_col_level <- function(df) {
 col_labels <- function(df) {
   vars <- setdiff(names(df), c(".wt", "l", "r", "t", "b", "level"))
   
-  ddply(df, "l", function(df) {
+  ddply(df, c("l", "r", "t", "b"), function(df) {
     # If width is constant, draw in the middle, otherwise draw on the left.
     widths <- df$r - df$l
     widths <- widths[widths != 0]
