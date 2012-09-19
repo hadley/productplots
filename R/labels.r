@@ -9,20 +9,28 @@
 
 #' Generate an x-scale for ggplot2 graphics.
 #'
-#' @param df data frame produced by \code{\link{prodcalc}}
+#' @param df list of data frame produced by \code{\link{prodcalc}}, formula and divider
 #' @export
 scale_x_product <- function(df) {
-  col <- find_col_level(df)
+  data <- df$data
+  vars <- parse_product_formula(df$formula)
   
-  if (is.na(col)) {
+  ## horizontal axis there if dividers contain "h":
+  col <- c(vars$cond, vars$marg)[grep("h", df$divider)]
+  ##  col <- find_col_level(data)
+  if (length(col) == 0) {
     # No columns, so just scatter a few tick marks around
-    breaks <- seq(0, 1, length = 4)
-    labels <- rep("", 4)
-    scale_x_continuous("", breaks = breaks, labels = labels)
+    breaks <- seq(0, 1, length = 5)
+#    labels <- rep("", 5)
+    scale_x_continuous("", breaks = breaks, labels = round(breaks,2))
   } else {
-    labels <- col_labels(df[df$level == col, ])
-    
-    scale_x_continuous("", breaks = labels$pos, labels =labels$label)
+#    labels <- col_labels(data[data$level == col, ])
+    labels <- subset(data, (level = max(level)) & (b==0))
+    labels$pos <- with(labels, (l+r)/2)
+    labels$label <- ldply(1:nrow(labels), function(x) paste(unlist(labels[x,col]), collapse=":"))$V1
+    xlabel <- paste(col, collapse=":")
+
+    scale_x_continuous(xlabel, breaks = labels$pos, labels =labels$label)
   }
 }
 
@@ -85,13 +93,33 @@ has_cols <- function(df) {
 
 #' Generate a y-scale for ggplot2 graphics.
 #'
-#' @param df data frame produced by \code{\link{prodcalc}}
+#' @param df list of data frame produced by \code{\link{prodcalc}}, formula and divider
 #' @export
+# scale_y_product <- function(df) {
+#   scale <- scale_x_product(rotate(df))
+#   scale$.input <- "y"
+#   scale$.output <- "y"
+#   scale
+# }
 scale_y_product <- function(df) {
-  scale <- scale_x_product(rotate(df))
-  scale$.input <- "y"
-  scale$.output <- "y"
-  scale
+  data <- df$data
+  vars <- parse_product_formula(df$formula)
+  
+  ## horizontal axis there if dividers contain "v":
+  col <- c(vars$cond, vars$marg)[grep("v", df$divider)]
+  ##  col <- find_col_level(data)
+  if (length(col) == 0) {
+    # No columns, so just scatter a few tick marks around
+    breaks <- seq(0, 1, length = 5)
+    scale_y_continuous("", breaks = breaks, labels = round(breaks,2))
+  } else {
+    labels <- subset(data, (level = max(level)) & (l==0))
+    labels$pos <- with(labels, (b+t)/2)
+    labels$label <- ldply(1:nrow(labels), function(x) paste(unlist(labels[x,col]), collapse=":"))$V1
+    ylabel <- paste(col, collapse=":")
+    
+    scale_y_continuous(ylabel, breaks = labels$pos, labels =labels$label)
+  }
 }
 
 #' Find the first level which has rows.

@@ -26,25 +26,33 @@
 #' }
 prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE, levels = -1L, ...) {
   require("ggplot2")
+
+  vars <- parse_product_formula(formula)
+  p <- length(c(vars$cond, vars$marg))  
+  
+  if (is.function(divider)) divider <- divider(p)
+  div_names <- divider
+  if (is.character(divider)) divider <- llply(divider, match.fun)
+  
   
   res <- prodcalc(data, formula, divider, cascade, scale_max, na.rm = na.rm)
   if (!(length(levels) == 1 && is.na(levels))) {
     levels[levels < 0] <-  max(res$level) + 1 + levels[levels < 0]
     res <- res[res$level %in% levels, ]
-  }
+  }  
 
-  draw(res, ...)
+  draw(list(data=res, formula=formula, divider=div_names), ...)
 }
 
 draw <- function(df, alpha = 1, colour = "grey30", subset = NULL) {
   require("ggplot2")
-
-  plot <- ggplot(df, 
+  data <- df$data
+  plot <- ggplot(data, 
     aes_string(xmin = "l", xmax = "r", ymin = "b", ymax = "t")) +
-    scale_x_product(df) + 
-    scale_y_product(df)
-    
-  levels <- split(df, df$level)
+    scale_y_product(df) +
+    scale_x_product(df) 
+  
+  levels <- split(data, data$level)
   for (level in levels) {
     plot <- plot + geom_rect(data = level, colour = colour, alpha = alpha)
   }
