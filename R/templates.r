@@ -5,7 +5,7 @@
 #' 
 #' @param direction direction of first split
 #' @export
-mosaic <- function(direction = "h") {
+mosaic <- function(direction = "v") {
   direction <- match.arg(direction, .directions)
   if (direction == "horizontal") {
     splits <- c("hspine", "vspine")
