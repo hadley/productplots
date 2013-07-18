@@ -5,9 +5,9 @@
 #' @param divider divider function
 #' @param cascade cascading amount, per nested layer
 #' @param scale_max Logical vector of length 1. If \code{TRUE} maximum values
-#'   within each nested layer will be scaled to take up all available space. 
+#'   within each nested layer will be scaled to take up all available space.
 #'   If \code{FALSE}, areas will be comparable between nested layers.
-#' @param na.rm Logical vector of length 1 - should missing levels be 
+#' @param na.rm Logical vector of length 1 - should missing levels be
 #'   silently removed?
 #' @param levels an integer vector specifying which levels to draw.
 #' @param ... other arguments passed on to \code{draw}
@@ -28,18 +28,18 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
   require("ggplot2")
 
   vars <- parse_product_formula(formula)
-  p <- length(c(vars$cond, vars$marg))  
-  
+  p <- length(c(vars$cond, vars$marg))
+
   if (is.function(divider)) divider <- divider(p)
   div_names <- divider
   if (is.character(divider)) divider <- llply(divider, match.fun)
-  
-  
+
+
   res <- prodcalc(data, formula, divider, cascade, scale_max, na.rm = na.rm)
   if (!(length(levels) == 1 && is.na(levels))) {
     levels[levels < 0] <-  max(res$level) + 1 + levels[levels < 0]
     res <- res[res$level %in% levels, ]
-  }  
+  }
 
   draw(list(data=res, formula=formula, divider=div_names), ...)
 }
@@ -47,16 +47,16 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
 draw <- function(df, alpha = 1, colour = "grey30", subset = NULL) {
   require("ggplot2")
   data <- df$data
-  plot <- ggplot(data, 
+  plot <- ggplot(data,
     aes_string(xmin = "l", xmax = "r", ymin = "b", ymax = "t")) +
     scale_y_product(df) +
-    scale_x_product(df) 
-  
+    scale_x_product(df)
+
   levels <- split(data, data$level)
   for (level in levels) {
     plot <- plot + geom_rect(data = level, colour = colour, alpha = alpha)
   }
-  
+
   plot
 }
 
@@ -67,7 +67,7 @@ draw <- function(df, alpha = 1, colour = "grey30", subset = NULL) {
 colour_weight <- function() {
   require("ggplot2")
   list(
-    aes(fill = .wt), 
+    aes_string(fill = ".wt"),
     scale_fill_gradient("Weight", low = "grey80", high = "black"))
 }
 
@@ -75,9 +75,9 @@ colour_weight <- function() {
 #'
 #' @keywords internal hplot
 #' @export
-colour_level <- function() { 
+colour_level <- function() {
   require("ggplot2")
   list(
-    aes(fill = factor(level)),
+    aes_string(fill = "factor(level)"),
     scale_fill_brewer("Level", pal = "Blues"))
 }
