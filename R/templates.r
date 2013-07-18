@@ -2,7 +2,7 @@
 
 #' Template for a mosaic plot.
 #' A mosaic plot is composed of spines in alternating directions.
-#' 
+#'
 #' @param direction direction of first split
 #' @export
 mosaic <- function(direction = "v") {
@@ -12,12 +12,12 @@ mosaic <- function(direction = "v") {
   } else {
     splits <- c("vspine", "hspine")
   }
-  
+
   function(n) rep(splits, length = n)
 }
 
 #' Template for a stacked bar chart.
-#' A stacked bar chart starts with a bar and then continues with spines in the 
+#' A stacked bar chart starts with a bar and then continues with spines in the
 #' opposite direction.
 #'
 #' @param direction direction of first split
@@ -50,7 +50,7 @@ nested <- function(direction = "h") {
 }
 
 #' Template for a double decker plot.
-#' A double decker plot is composed of a sequence of spines in the same 
+#' A double decker plot is composed of a sequence of spines in the same
 #' direction, with the final spine in the opposite direction.
 #'
 #' @param direction direction of first split

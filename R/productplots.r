@@ -1,11 +1,11 @@
 #' Data related to happiness from the general social survey.
-#' 
+#'
 #' The data is a small sample of variables related to happiness from the
 #' general social survey (GSS). The GSS is a yearly cross-sectional survey of
 #' Americans, run from 1976. We combine data for 25 years to yield 51,020
 #' observations, and of the over 5,000 variables, we select nine related to
 #' happiness:
-#' 
+#'
 #' \itemize{
 #'  \item age. age in years: 18--89.
 #'  \item degree. highest education: lt high school, high school, junior
@@ -19,7 +19,7 @@
 #'  \item sex. sex: female, male.
 #'  \item wtsall. probability weight. 0.43--6
 #' }
-#' 
+#'
 #' @docType data
 #' @keywords datasets
 #' @name happy

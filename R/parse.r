@@ -1,6 +1,6 @@
 #' Parse product formula into component pieces
 #'
-#' @return 
+#' @return
 #'   \item{wt}{the weighting variable}
 #'   \item{cond}{condition variables}
 #'   \item{margin}{margining variables}
@@ -8,11 +8,11 @@
 #' @keywords internal
 #' @export
 parse_product_formula <- function(f) {
-  
+
   # Figure out weighting
   wt <- if (is.binary.op(f)) all.vars(lhs(f)) else character()
   mc <- rhs(f)
-  
+
   if (identical(op(mc), as.name("|"))) {
     # Has conditioning
     cond <- all.vars(rhs(mc))
@@ -21,7 +21,7 @@ parse_product_formula <- function(f) {
     cond <- character()
     marg <- all.vars(mc)
   }
-  
+
   marg <- marg[marg != "."]
   list(wt = wt, marg = marg, cond = cond)
 }

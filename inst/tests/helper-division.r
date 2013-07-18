@@ -25,9 +25,9 @@ calc_area <- function(mat, divider) {
 #' between the two.
 calc_ratio <- function(dims) {
   ddply(dims, "level", function(df) {
-    transform(df, 
-      .wt = prop(.wt), 
-      area = prop(area), 
+    transform(df,
+      .wt = prop(.wt),
+      area = prop(area),
       ratio = prop(area) / prop(.wt))
   })
 }
@@ -37,8 +37,8 @@ calc_ratio <- function(dims) {
 has_proportional_areas <- function() {
   function(dims) {
     ratios <- calc_ratio(dims)
-    incorrect <- subset(ratios, abs(ratio - 1) > 1e-6)  
-    
+    incorrect <- subset(ratios, abs(ratio - 1) > 1e-6)
+
     expectation(
       nrow(incorrect) == 0,
       paste(c("", capture.output(print(head(incorrect)))), collapse = "\n")

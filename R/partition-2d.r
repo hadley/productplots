@@ -11,7 +11,7 @@ fluct <- function(data, bounds, offset = 0.05, max = NULL) {
   # Size should be number between 0 and 1, reflecting total amount of cell to
   # take up
   sizes <- sqrt(data / max) * (1 - offset)
-  
+
   l <- (col(data) - 1) / ncol(data)
   b <- (row(data) - 1) / nrow(data)
   width <- sizes / ncol(data)
@@ -24,6 +24,6 @@ fluct <- function(data, bounds, offset = 0.05, max = NULL) {
     t = as.vector(b + height)
   )
   squeeze(locations, bounds)
-  
+
 }
 attr(fluct, "d") <- 2
