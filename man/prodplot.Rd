@@ -3,7 +3,7 @@
 \title{Create a product plot}
 \usage{
   prodplot(data, formula, divider = mosaic(), cascade = 0,
-  scale_max = TRUE, na.rm = FALSE, levels = -1L, ...)
+    scale_max = TRUE, na.rm = FALSE, levels = -1L, ...)
 }
 \arguments{
   \item{data}{input data frame}
@@ -16,7 +16,7 @@
 
   \item{scale_max}{Logical vector of length 1. If
   \code{TRUE} maximum values within each nested layer will
-  be scaled to take up all available space. If
+  be scaled to take up all available space.  If
   \code{FALSE}, areas will be comparable between nested
   layers.}
 
