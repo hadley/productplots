@@ -44,9 +44,12 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
   draw(list(data=res, formula=formula, divider=div_names), ...)
 }
 
-draw <- function(df, alpha = 1, colour = "grey30", subset = NULL, mapping = aes()) {
+draw <- function(df, subset = NULL, mapping = aes(), ...) {
   require("ggplot2")
   data <- df$data
+
+  args <- list(...)
+  if(! any(c("colour", "color") %in% c(names(args), names(mapping)))) args[["colour"]] <- "grey30"
   
   m <- aes_string(xmin = "l", xmax = "r", ymin = "b", ymax = "t")
   m[names(mapping)] <- mapping
@@ -57,7 +60,7 @@ draw <- function(df, alpha = 1, colour = "grey30", subset = NULL, mapping = aes(
 
   levels <- split(data, data$level)
   for (level in levels) {
-    plot <- plot + geom_rect(data = level, colour = colour, alpha = alpha)
+    plot <- plot + do.call(geom_rect, c(list(data = level), args))
   }
 
   plot
