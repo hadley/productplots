@@ -44,11 +44,14 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
   draw(list(data=res, formula=formula, divider=div_names), ...)
 }
 
-draw <- function(df, alpha = 1, colour = "grey30", subset = NULL) {
+draw <- function(df, alpha = 1, colour = "grey30", subset = NULL, mapping = aes()) {
   require("ggplot2")
   data <- df$data
-  plot <- ggplot(data,
-    aes_string(xmin = "l", xmax = "r", ymin = "b", ymax = "t")) +
+  
+  m <- aes_string(xmin = "l", xmax = "r", ymin = "b", ymax = "t")
+  m[names(mapping)] <- mapping
+  
+  plot <- ggplot(data, m) +
     scale_y_product(df) +
     scale_x_product(df)
 
