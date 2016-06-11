@@ -28,3 +28,4 @@ Collate:
     'productplots.r'
     'templates.r'
     'utils.r'
+RoxygenNote: 5.0.1
