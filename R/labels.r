@@ -16,7 +16,7 @@ scale_x_product <- function(df) {
   vars <- parse_product_formula(df$formula)
 
   ## horizontal axis there if dividers contain "h":
-  col <- c(vars$cond, vars$marg)[grep("h", df$divider)]
+  col <- c(vars$marg, vars$cond)[grep("h", df$divider)]
   ##  col <- find_col_level(data)
   if (length(col) == 0) {
     # No columns, so just scatter a few tick marks around
@@ -102,11 +102,12 @@ has_cols <- function(df) {
 #   scale
 # }
 scale_y_product <- function(df) {
+#  browser()
   data <- df$data
   vars <- parse_product_formula(df$formula)
 
   ## horizontal axis there if dividers contain "v":
-  col <- c(vars$cond, vars$marg)[grep("v", df$divider)]
+  col <- c(vars$marg, vars$cond)[grep("v", df$divider)]
   ##  col <- find_col_level(data)
   if (length(col) == 0) {
     # No columns, so just scatter a few tick marks around
