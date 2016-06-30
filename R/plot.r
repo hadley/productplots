@@ -26,8 +26,6 @@
 #' prodplot(happy, ~ sex + happy, stacked(), level = 2)
 #' }
 prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE, na.rm = FALSE, levels = -1L, ...) {
-  require("ggplot2")
-
   vars <- parse_product_formula(formula)
   p <- length(c(vars$cond, vars$marg))
 
@@ -45,11 +43,11 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
   draw(list(data=res, formula=formula, divider=div_names), ...)
 }
 
+#' @importFrom ggplot2 aes_string ggplot geom_rect
 draw <- function(df, alpha = 1, colour = "grey30", subset = NULL) {
-  require("ggplot2")
   data <- df$data
   plot <- ggplot(data,
-    aes_string(xmin = "l", xmax = "r", ymin = "b", ymax = "t")) +
+    ggplot2::aes_string(xmin = "l", xmax = "r", ymin = "b", ymax = "t")) +
     scale_y_product(df) +
     scale_x_product(df)
 
@@ -64,9 +62,9 @@ draw <- function(df, alpha = 1, colour = "grey30", subset = NULL) {
 #' For ggplot2: colour by weight.
 #'
 #' @keywords internal hplot
+#' @importFrom ggplot2 scale_fill_gradient aes_string
 #' @export
 colour_weight <- function() {
-  require("ggplot2")
   list(
     aes_string(fill = ".wt"),
     scale_fill_gradient("Weight", low = "grey80", high = "black"))
@@ -75,9 +73,9 @@ colour_weight <- function() {
 #' For ggplot2: colour by weight.
 #'
 #' @keywords internal hplot
+#' @importFrom ggplot2 scale_fill_brewer aes_string
 #' @export
 colour_level <- function() {
-  require("ggplot2")
   list(
     aes_string(fill = "factor(level)"),
     scale_fill_brewer("Level", pal = "Blues"))

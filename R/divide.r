@@ -25,7 +25,7 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
   children <- ldply(seq_along(pieces), function(i) {
     piece <- pieces[[i]]
     partition <- divide(piece[, -seq_len(d)], parentc[i, ], divider[-1],
-      level = level + 1, cascade = cascade, max = max_wt)
+      level = level + 1, cascade = cascade, max_wt = max_wt)
 
     labels <- piece[rep(1, nrow(partition)), 1:d, drop = FALSE]
     cbind(labels, partition)

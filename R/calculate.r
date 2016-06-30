@@ -10,6 +10,7 @@
 #' @param na.rm Logical vector of length 1 - should missing levels be
 #'   silently removed?
 #' @keywords internal
+#' @importFrom stats complete.cases
 #' @export
 #' @examples
 #' prodcalc(happy, ~ happy, "hbar")

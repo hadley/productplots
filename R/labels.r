@@ -10,8 +10,10 @@
 #' Generate an x-scale for ggplot2 graphics.
 #'
 #' @param df list of data frame produced by \code{\link{prodcalc}}, formula and divider
+#' @importFrom ggplot2 scale_x_continuous
 #' @export
 scale_x_product <- function(df) {
+  l <- b <- r <- NULL # initialization
   data <- df$data
   vars <- parse_product_formula(df$formula)
 
@@ -94,6 +96,7 @@ has_cols <- function(df) {
 #' Generate a y-scale for ggplot2 graphics.
 #'
 #' @param df list of data frame produced by \code{\link{prodcalc}}, formula and divider
+#' @importFrom ggplot2 scale_y_continuous
 #' @export
 # scale_y_product <- function(df) {
 #   scale <- scale_x_product(rotate(df))
@@ -103,6 +106,7 @@ has_cols <- function(df) {
 # }
 scale_y_product <- function(df) {
 #  browser()
+  l <- b <- r <- NULL # initialization
   data <- df$data
   vars <- parse_product_formula(df$formula)
 
