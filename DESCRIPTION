@@ -10,7 +10,6 @@ Description: Framework for visualising tables of counts, proportions
   previously described in fields of statistical graphics and infovis,
   including bar charts, mosaic plots, treemaps, equal area plots and
   fluctuation diagrams.
-URL: http://vita.had.co.nz/papers/prodplots.html
 Version: 0.1.1
 Author: Hadley Wickham <h.wickham@gmail.com>
 Maintainer: Hadley Wickham <h.wickham@gmail.com>
@@ -37,3 +36,5 @@ Collate:
     'templates.r'
     'utils.r'
 RoxygenNote: 5.0.1
+URL: https://github.com/hadley/productplots
+BugReports: https://github.com/hadley/productplots/issues
