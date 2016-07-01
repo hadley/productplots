@@ -39,7 +39,7 @@ has_proportional_areas <- function() {
     ratios <- calc_ratio(dims)
     incorrect <- subset(ratios, abs(ratio - 1) > 1e-6)
 
-    expectation(
+    expect(
       nrow(incorrect) == 0,
       paste(c("", capture.output(print(head(incorrect)))), collapse = "\n")
     )
