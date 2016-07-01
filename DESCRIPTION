@@ -1,6 +1,5 @@
 Package: productplots
-Type: Package
-Title: product plots for R
+Title: Product Plots for R
 Description: Framework for visualising tables of counts, proportions
   and probabilities. The framework is called product plots, alluding to
   the computation of area as a product of height and width, and the
@@ -11,8 +10,10 @@ Description: Framework for visualising tables of counts, proportions
   including bar charts, mosaic plots, treemaps, equal area plots and
   fluctuation diagrams.
 Version: 0.1.1
-Author: Hadley Wickham <h.wickham@gmail.com>
-Maintainer: Hadley Wickham <h.wickham@gmail.com>
+Authors@R: c(
+    person("Hadley", "Wickham", , "hadley@rstudio.com", c("aut", "cre")),
+    person("Heike", "Hofmann", , "heike.hofmann@gmail.com", role = "aut")
+    )
 Imports:
     plyr,
     ggplot2
@@ -21,20 +22,6 @@ Suggests:
     testthat
 License: GPL-2
 LazyData: true
-Collate:
-    'calculate.r'
-    'divide.r'
-    'labels.r'
-    'margin.r'
-    'parse.r'
-    'partition-1d.r'
-    'partition-2d.r'
-    'partition-tile.r'
-    'partition.r'
-    'plot.r'
-    'productplots.r'
-    'templates.r'
-    'utils.r'
 RoxygenNote: 5.0.1
 URL: https://github.com/hadley/productplots
 BugReports: https://github.com/hadley/productplots/issues
