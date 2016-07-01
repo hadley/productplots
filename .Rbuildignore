@@ -3,3 +3,4 @@ TODO
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^codecov\.yml$
+^cran-comments\.md$
