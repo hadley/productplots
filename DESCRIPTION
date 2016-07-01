@@ -6,8 +6,8 @@ Description: Framework for visualising tables of counts, proportions
   statistical concept of generating a joint distribution from the
   product of conditional and marginal distributions. The framework,
   with extensions, is sufficient to encompass over 20 visualisations
-  previously described in fields of statistical graphics and infovis,
-  including bar charts, mosaic plots, treemaps, equal area plots and
+  previously described in fields of statistical graphics and 'infovis',
+  including bar charts, mosaic plots, 'treemaps', equal area plots and
   fluctuation diagrams.
 Version: 0.1.1
 Authors@R: c(
