@@ -9,7 +9,7 @@ Description: Framework for visualising tables of counts, proportions
   previously described in fields of statistical graphics and 'infovis',
   including bar charts, mosaic plots, 'treemaps', equal area plots and
   fluctuation diagrams.
-Version: 0.1.1
+Version: 0.1.1.9000
 Authors@R: c(
     person("Hadley", "Wickham", , "hadley@rstudio.com", c("aut", "cre")),
     person("Heike", "Hofmann", , "heike.hofmann@gmail.com", role = "aut")
