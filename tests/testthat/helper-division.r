@@ -1,7 +1,5 @@
-library(reshape2)
-
 make_df <- function(mat) {
-  rename(melt(mat), c("value" = ".wt"))
+  rename(reshape2::melt(mat), c("value" = ".wt"))
 }
 
 rand_array <- function(...) {
@@ -34,14 +32,12 @@ calc_ratio <- function(dims) {
 
 
 #' Expectation: output areas are proportional to input weights
-has_proportional_areas <- function() {
-  function(dims) {
-    ratios <- calc_ratio(dims)
-    incorrect <- subset(ratios, abs(ratio - 1) > 1e-6)
+expect_proportional_areas <- function(dims) {
+  ratios <- calc_ratio(dims)
+  incorrect <- subset(ratios, abs(ratio - 1) > 1e-6)
 
-    expect(
-      nrow(incorrect) == 0,
-      paste(c("", capture.output(print(head(incorrect)))), collapse = "\n")
-    )
-  }
+  expect(
+    nrow(incorrect) == 0,
+    paste(c("", capture.output(print(head(incorrect)))), collapse = "\n")
+  )
 }

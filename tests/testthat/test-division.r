@@ -1,6 +1,4 @@
-library(testthat)
-
-context("Division algorithm")
+skip_if_not_installed("reshape2") # calc_area() needs melt()
 
 test_that("2d areas are proportional to weights", {
   rand3x4 <- rand_array(3, 4)
@@ -16,7 +14,7 @@ test_that("2d areas are proportional to weights", {
   )
 
   for(type in types) {
-    expect_that(calc_area(rand3x4, type), has_proportional_areas())
+    expect_proportional_areas(calc_area(rand3x4, type))
   }
 })
 
@@ -39,7 +37,7 @@ test_that("3d areas are proportional to weights", {
   )
 
   for(type in types) {
-    expect_that(calc_area(rand2x3x4, type), has_proportional_areas())
+    expect_proportional_areas(calc_area(rand2x3x4, type))
   }
 })
 
@@ -56,17 +54,13 @@ test_that("4d areas are proportional to weights", {
   )
 
   for(type in types) {
-    expect_that(calc_area(rand2x3x4x5, type), has_proportional_areas())
+    expect_proportional_areas(calc_area(rand2x3x4x5, type))
   }
 })
 
 
 test_that("missing values are handled correctly", {
-  expect_that(add_area(prodcalc(happy, ~ age + year)),
-    has_proportional_areas())
+  expect_proportional_areas(add_area(prodcalc(happy, ~ age + year)))
 
-  expect_that(add_area(prodcalc(happy, ~ age + year, div = "fluct")),
-    has_proportional_areas())
-
-
+  expect_proportional_areas(add_area(prodcalc(happy, ~ age + year, div = "fluct")))
 })
