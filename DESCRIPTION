@@ -19,7 +19,7 @@ Imports:
     ggplot2
 Suggests:
     reshape2,
-    testthat,
+    testthat (>= 3.0.0),
     covr
 License: GPL-2
 LazyData: true
