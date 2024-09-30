@@ -18,4 +18,3 @@ hspine(data, bounds, offset = 0.01, max = NULL)
 \description{
 Horizontal spine partition: height constant, width varies.
 }
-

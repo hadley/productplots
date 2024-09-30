@@ -18,4 +18,3 @@ fluct(data, bounds, offset = 0.05, max = NULL)
 \description{
 Fluctation partitioning.
 }
-

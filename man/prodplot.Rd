@@ -4,8 +4,16 @@
 \alias{prodplot}
 \title{Create a product plot}
 \usage{
-prodplot(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE,
-  na.rm = FALSE, levels = -1L, ...)
+prodplot(
+  data,
+  formula,
+  divider = mosaic(),
+  cascade = 0,
+  scale_max = TRUE,
+  na.rm = FALSE,
+  levels = -1L,
+  ...
+)
 }
 \arguments{
 \item{data}{input data frame}
@@ -44,4 +52,3 @@ prodplot(happy, ~ sex + happy, stacked(), level = 1)
 prodplot(happy, ~ sex + happy, stacked(), level = 2)
 }
 }
-

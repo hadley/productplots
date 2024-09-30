@@ -11,4 +11,3 @@ For ggplot2: colour by weight.
 }
 \keyword{hplot}
 \keyword{internal}
-

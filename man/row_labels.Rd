@@ -13,4 +13,3 @@ row_labels(df)
 Calculate row labels.
 }
 \keyword{internal}
-

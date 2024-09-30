@@ -12,4 +12,3 @@ find_row_level(df)
 \description{
 Returns \code{NA} if no rows at any level.
 }
-

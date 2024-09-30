@@ -12,4 +12,3 @@ flucts(direction = "h")
 \description{
 Template for a fluctuation diagram.
 }
-

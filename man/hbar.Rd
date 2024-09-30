@@ -18,4 +18,3 @@ hbar(data, bounds, offset = 0.02, max = NULL)
 \description{
 Horizontal bar partition: width constant, height varies.
 }
-

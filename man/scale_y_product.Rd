@@ -12,4 +12,3 @@ scale_y_product(df)
 \description{
 Generate a y-scale for ggplot2 graphics.
 }
-

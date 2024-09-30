@@ -18,4 +18,3 @@ vbar(data, bounds, offset = 0.02, max = NULL)
 \description{
 Vertical bar partition: height constant, width varies.
 }
-

@@ -17,4 +17,3 @@ tile(data, bounds, max = 1)
 Adapated from SquarifiedLayout in
 \url{http://www.cs.umd.edu/hcil/treemap-history/Treemaps-Java-Algorithms.zip}
 }
-

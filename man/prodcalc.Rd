@@ -4,8 +4,14 @@
 \alias{prodcalc}
 \title{Calculate frequencies.}
 \usage{
-prodcalc(data, formula, divider = mosaic(), cascade = 0, scale_max = TRUE,
-  na.rm = FALSE)
+prodcalc(
+  data,
+  formula,
+  divider = mosaic(),
+  cascade = 0,
+  scale_max = TRUE,
+  na.rm = FALSE
+)
 }
 \arguments{
 \item{data}{input data frame}
@@ -31,4 +37,3 @@ prodcalc(happy, ~ happy, "hbar")
 prodcalc(happy, ~ happy, "hspine")
 }
 \keyword{internal}
-

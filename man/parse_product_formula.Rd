@@ -18,4 +18,3 @@ parse_product_formula(f)
 Parse product formula into component pieces
 }
 \keyword{internal}
-

@@ -12,4 +12,3 @@ scale_x_product(df)
 \description{
 Generate an x-scale for ggplot2 graphics.
 }
-

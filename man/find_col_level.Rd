@@ -12,4 +12,3 @@ find_col_level(df)
 \description{
 Returns \code{NA} if no columns at any level.
 }
-

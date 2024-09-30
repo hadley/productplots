@@ -13,4 +13,3 @@ col_labels(df)
 Calculate column labels.
 }
 \keyword{internal}
-
