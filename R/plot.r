@@ -31,7 +31,7 @@ prodplot <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
 
   if (is.function(divider)) divider <- divider(p)
   div_names <- divider
-  if (is.character(divider)) divider <- llply(divider, match.fun)
+  if (is.character(divider)) divider <- lapply(divider, match.fun)
 
 
   res <- prodcalc(data, formula, divider, cascade, scale_max, na.rm = na.rm)

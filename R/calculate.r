@@ -30,7 +30,7 @@ prodcalc <- function(data, formula, divider = mosaic(), cascade = 0, scale_max =
   }
 
   if (is.function(divider)) divider <- divider(ncol(wt) - 1)
-  if (is.character(divider)) divider <- llply(divider, match.fun)
+  if (is.character(divider)) divider <- lapply(divider, match.fun)
 
   max_wt <- if (scale_max) NULL else 1
 
