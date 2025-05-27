@@ -264,11 +264,6 @@ test_that("prodcalc with more complex formula (three variables, nested and condi
   result <- prodcalc(df_complex, sales ~ product | region + status, divider = mosaic())
 
   expect_true(is.data.frame(result))
-
-  n_region <- nlevels(df_complex$region)
-  n_product <- nlevels(df_complex$product)
-  n_status <- nlevels(df_complex$status)
-
   expect_equal(nrow(result), 34)
 
   expect_true(all(c("region", "status", "product", ".wt", "l", "b", "r", "t", "level") %in% names(result)))
