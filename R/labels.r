@@ -29,7 +29,7 @@ scale_x_product <- function(df) {
 #    labels <- col_labels(data[data$level == col, ])
     labels <- subset(data, (level = max(level)) & (b==0))
     labels$pos <- with(labels, (l+r)/2)
-    labels$label <- ldply(1:nrow(labels), function(x) paste(unlist(labels[x,col]), collapse=":"))$V1
+    labels$label <- vapply(seq_len(nrow(labels)), function(i) paste(unlist(labels[i,col]), collapse=":"), character(1L))
     xlabel <- paste(col, collapse=":")
 
     scale_x_continuous(xlabel, breaks = labels$pos, labels =labels$label)
@@ -120,7 +120,7 @@ scale_y_product <- function(df) {
   } else {
     labels <- subset(data, (level = max(level)) & (l==0))
     labels$pos <- with(labels, (b+t)/2)
-    labels$label <- ldply(1:nrow(labels), function(x) paste(unlist(labels[x,col]), collapse=":"))$V1
+    labels$label <- vapply(seq_len(nrow(labels)), function(i) paste(unlist(labels[i,col]), collapse=":"), character(1L))
     ylabel <- paste(col, collapse=":")
 
     scale_y_continuous(ylabel, breaks = labels$pos, labels =labels$label)
