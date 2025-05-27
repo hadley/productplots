@@ -22,7 +22,7 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
   }
 
   pieces <- as.list(dlply(data, seq_len(d)))
-  children <- ldply(seq_along(pieces), function(i) {
+  children <- lapply(seq_along(pieces), function(i) {
     piece <- pieces[[i]]
     partition <- divide(piece[, -seq_len(d)], parentc[i, ], divider[-1],
       level = level + 1, cascade = cascade, max_wt = max_wt)
@@ -30,7 +30,16 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
     labels <- piece[rep(1, nrow(partition)), 1:d, drop = FALSE]
     cbind(labels, partition)
   })
-  rbind.fill(parent, children)
+  children <- do.call(rbind, children)
+  # match structure of parent, children
+  for (new_col in setdiff(names(children), names(parent))) {
+    parent[[new_col]] <- NA
+    storage.mode(parent[[new_col]]) <- storage.mode(children[[new_col]])
+    # rbind(<integer>, <factor>) coerces both to character, but we need
+    #   to retain factor structure.
+    attributes(parent[[new_col]]) <- attributes(children[[new_col]])
+  }
+  rbind(parent, children)
 }
 
 # @param data data frame giving partitioning variables and weights.  Final
