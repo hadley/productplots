@@ -29,7 +29,7 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
     y <- factor(data[[jj]])
     old_levels <- levels(y)
     # this level is assured to be sorted past the last level, just like NA
-    new_level <- paste0(tail(old_levels, 1L), "___")
+    new_level <- paste0(old_levels[length(old_levels)], "___")
     levels(y) <- c(old_levels, new_level)
     y[is.na(y)] <- new_level
     data[[jj]] <- y
