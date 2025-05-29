@@ -35,6 +35,8 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
     data[[jj]] <- y
   }
   pieces <- split(data, data[seq_len(d)])
+  pieces <- pieces[order(names(pieces))]
+  for (jj in seq_along(pieces)) rownames(pieces[[jj]]) <- NULL
   children <- ldply(seq_along(pieces), function(i) {
     piece <- pieces[[i]]
     partition <- divide(piece[, -seq_len(d)], parentc[i, ], divider[-1],
