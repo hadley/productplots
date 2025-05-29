@@ -21,7 +21,20 @@ divide <- function(data, bounds = bound(), divider = list(hbar), level = 1, casc
     max_wt <- max(margin(data, d + 1, seq_len(d))$.wt, na.rm = TRUE)
   }
 
-  pieces <- as.list(dlply(data, seq_len(d)))
+  # Rather awkward to deal with the case that some columns have potentially
+  #   missing values as split() will just drop those levels:
+  #   https://bugs.r-project.org/show_bug.cgi?id=18899
+  for (jj in seq_len(d)) {
+    if (!anyNA(data[[jj]])) next
+    y <- factor(data[[jj]])
+    old_levels <- levels(y)
+    # this level is assured to be sorted past the last level, just like NA
+    new_level <- paste0(tail(old_levels, 1L), "___")
+    levels(y) <- c(old_levels, new_level)
+    y[is.na(y)] <- new_level
+    data[[jj]] <- y
+  }
+  pieces <- split(data, data[seq_len(d)])
   children <- ldply(seq_along(pieces), function(i) {
     piece <- pieces[[i]]
     partition <- divide(piece[, -seq_len(d)], parentc[i, ], divider[-1],
