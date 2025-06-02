@@ -1,5 +1,19 @@
 rotate <- function(data) {
-  rename(data, c("l" = "b", "r" = "t", "b" = "l", "t" = "r"))
+  name_mapping <- c("l" = "b", "r" = "t", "b" = "l", "t" = "r")
+  mapped_idx <- names(data) %in% names(name_mapping)
+  if (!all(mapped_idx)) {
+    message(
+      "Did not find these columns to rename: ",
+      toString(setdiff(names(data), names(name_mapping)))
+    )
+  }
+  rename_idx <- names(data) %in% names(name_mapping)
+  names(data)[rename_idx] <- name_mapping[names(data)[rename_idx]]
+  dup_id <- anyDuplicated(names(data))
+  if (dup_id > 0L) {
+    warning("Rename operation created duplicate names, e.g. ", names(data)[dup_id])
+  }
+  data
 }
 
 #' Spine partition: divide longest dimesion.
