@@ -56,29 +56,47 @@ find_col_level <- function(df) {
 col_labels <- function(df) {
   vars <- setdiff(names(df), c(".wt", "l", "r", "t", "b", "level"))
 
-  ddply(df, "l", function(df) {
-    # If width is constant, draw in the middle, otherwise draw on the left.
-    widths <- df$r - df$l
-    widths <- widths[widths != 0]
-    constant <- length(widths) != 0 &&
-      (length(unique(widths)) <= 1 || cv(widths, T) < 0.01)
+labels <- do.call(rbind, c(
+    lapply(split(df, df$l), function(df) {
+      # If width is constant, draw in the middle, otherwise draw on the left.
+      widths <- df$r - df$l
+      widths <- widths[widths != 0]
+      constant <- length(widths) != 0 &&
+        (length(unique(widths)) <= 1 || cv(widths, na.rm = TRUE) < 0.01)
 
-    if (constant) {
-      pos <- df$l[1] + widths[1] / 2
-    } else {
-      pos <- df$l[1]
-    }
+      if (constant) {
+        pos <- df$l[1] + widths[1] / 2
+      } else {
+        pos <- df$l[1]
+      }
 
-    data.frame(pos, label = uniquecols(df[vars])[, 1])
-  })
+      data.frame(l = df$l[1L], pos, label = uniquecols(df[vars])[, 1])
+    }),
+    if (anyNA(df$l)) list(data.frame(
+      l = NA,
+      pos = NA,
+      label = uniquecols(df[is.na(df$l), vars])[, 1]
+    ))
+  ))
+  rownames(labels) <- NULL
+  labels[order(labels$l), ] 
 }
 
 has_cols <- function(df) {
   vars <- setdiff(names(df), c(".wt", "l", "r", "t", "b", "level"))
 
-  cols <- ddply(df, "l", function(df) {
-    data.frame(r = max(df$r), nvars = ncol(uniquecols(df[vars])))
-  })
+  cols <- do.call(rbind, c(
+    lapply(split(df, df$l), function(df) {
+      data.frame(l = df$l[1L], r = max(df$r), nvars = ncol(uniquecols(df[vars])))
+    }),
+    if (anyNA(df$l)) list(data.frame(
+      l = NA,
+      r = max(df$r[is.na(df$l)]),
+      nvars = ncol(uniquecols(df[is.na(df$l), vars]))
+    ))
+  ))
+  rownames(cols) <- NULL
+  cols <- cols[order(cols$l), ]
 
   n <- nrow(cols)
 

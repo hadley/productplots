@@ -24,14 +24,14 @@ calc_area <- function(mat, divider) {
 #' Standardise weight and area to sum to 1 within a level, and calulate ratio
 #' between the two.
 calc_ratio <- function(dims) {
-  ddply(dims, "level", function(df) {
-    transform(df,
-      .wt = prop(.wt),
-      area = prop(area),
-      ratio = prop(area) / prop(.wt))
+  dims <- lapply(split(dims, dims$level), function(df) {
+    df$.wt <- prop(df$.wt)
+    df$area <- prop(df$area)
+    df$ratio <- df$area / df$.wt
+    return(df)
   })
+  do.call(rbind, dims)
 }
-
 
 #' Expectation: output areas are proportional to input weights
 has_proportional_areas <- function() {
