@@ -10,8 +10,8 @@ margin <- function(table, marginals = c(), conditionals = c()) {
   if (length(conditionals) > 0) {
     # Work around bug in ninteraction
     cond <- marg[conditionals]
-    cond[] <- lapply(cond, addNA, ifany = TRUE)
-    marg$.wt <- stats::ave(marg$.wt, id(cond), FUN = prop)
+    cond <- lapply(cond, addNA, ifany = TRUE)
+    marg$.wt <- do.call(ave, c(list(marg$.wt), cond, FUN = prop))
   }
 
   marg$.wt[is.na(marg$.wt)] <- 0
