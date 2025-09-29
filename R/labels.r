@@ -22,7 +22,7 @@ scale_x_product <- function(df) {
   ##  col <- find_col_level(data)
   if (length(col) == 0) {
     # No columns, so just scatter a few tick marks around
-    breaks <- seq(0, 1, length = 5)
+    breaks <- seq(0, 1, length.out = 5)
 #    labels <- rep("", 5)
     scale_x_continuous("", breaks = breaks, labels = round(breaks,2))
   } else {
@@ -115,7 +115,7 @@ scale_y_product <- function(df) {
   ##  col <- find_col_level(data)
   if (length(col) == 0) {
     # No columns, so just scatter a few tick marks around
-    breaks <- seq(0, 1, length = 5)
+    breaks <- seq(0, 1, length.out = 5)
     scale_y_continuous("", breaks = breaks, labels = round(breaks,2))
   } else {
     labels <- subset(data, (level = max(level)) & (l==0))
@@ -141,4 +141,3 @@ find_row_level <- function(df) find_col_level(rotate(df))
 #' @export
 row_labels <- function(df) col_labels(rotate(df))
 has_rows <- function(df) has_cols(rotate(df))
-

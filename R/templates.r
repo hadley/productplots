@@ -13,7 +13,7 @@ mosaic <- function(direction = "v") {
     splits <- c("vspine", "hspine")
   }
 
-  function(n) rep(splits, length = n)
+  function(n) rep(splits, length.out = n)
 }
 
 #' Template for a stacked bar chart.
@@ -30,7 +30,7 @@ stacked <- function(direction = "h") {
     splits <- c("vbar", "hspine")
   }
 
-  function(n) c(splits[1], rep(splits[2], length = n - 1))
+  function(n) c(splits[1], rep(splits[2], length.out = n - 1))
 }
 
 #' Template for a nested barchart.
@@ -46,7 +46,7 @@ nested <- function(direction = "h") {
     splits <- c("vbar")
   }
 
-  function(n) rep(splits, length = n)
+  function(n) rep(splits, length.out = n)
 }
 
 #' Template for a double decker plot.
@@ -63,7 +63,7 @@ ddecker <- function(direction = "h") {
     splits <- c("vspine", "hspine")
   }
 
-  function(n) c(rep(splits[1], length = n - 1), splits[2])
+  function(n) c(rep(splits[1], length.out = n - 1), splits[2])
 }
 
 #' Template for a fluctuation diagram.
@@ -77,5 +77,5 @@ flucts <- function(direction = "h") {
   } else {
     splits <- c("vspine", "hspine")
   }
-  function(n) c(rep(splits, length = n - 2), "fluct")
+  function(n) c(rep(splits, length.out = n - 2), "fluct")
 }

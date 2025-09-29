@@ -40,14 +40,14 @@ test_that("vbar, vspine and fluct all have rows", {
 test_that("labelling levels identified corrected", {
 
   a <- prodcalc(happy, ~ finrela + degree, "fluct", na.rm = T)
-  expect_that(find_col_level(a), equals(1))
-  expect_that(find_row_level(a), equals(1))
+  expect_equal(find_col_level(a), 1)
+  expect_equal(find_row_level(a), 1)
 
   b <- prodcalc(happy, ~ finrela | degree, c("vbar", "hspine"), na.rm = T)
-  expect_that(find_col_level(b), equals(1))
-  expect_that(find_row_level(b), equals(2))
+  expect_equal(find_col_level(b), 1)
+  expect_equal(find_row_level(b), 2)
 
   c <- prodcalc(happy, ~ finrela | degree, c("vbar", "vspine"), na.rm = T)
-  expect_that(find_col_level(c), equals(NA_real_))
-  expect_that(find_row_level(c), equals(1))
+  expect_equal(find_col_level(c), NA_real_)
+  expect_equal(find_row_level(c), 1)
 })

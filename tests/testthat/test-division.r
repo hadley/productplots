@@ -65,7 +65,7 @@ test_that("missing values are handled correctly", {
   expect_that(add_area(prodcalc(happy, ~ age + year)),
     has_proportional_areas())
 
-  expect_that(add_area(prodcalc(happy, ~ age + year, div = "fluct")),
+  expect_that(add_area(prodcalc(happy, ~ age + year, divider = "fluct")),
     has_proportional_areas())
 
 

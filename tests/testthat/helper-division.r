@@ -1,7 +1,5 @@
-library(reshape2)
-
 make_df <- function(mat) {
-  rename(melt(mat), c("value" = ".wt"))
+  rename(reshape2::melt(mat), c("value" = ".wt"))
 }
 
 rand_array <- function(...) {
