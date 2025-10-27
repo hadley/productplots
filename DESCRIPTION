@@ -11,7 +11,7 @@ Description: Framework for visualising tables of counts, proportions
   fluctuation diagrams.
 Version: 0.1.2
 Authors@R: c(
-    person("Hadley", "Wickham", , "hadley@rstudio.com", c("aut", "cre")),
+    person("Hadley", "Wickham", , "hadley@posit.co", c("aut", "cre")),
     person("Heike", "Hofmann", , "heike.hofmann@gmail.com", role = "aut")
     )
 Imports:
